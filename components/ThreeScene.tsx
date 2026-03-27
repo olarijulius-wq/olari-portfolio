@@ -10,17 +10,14 @@ export default function ThreeScene() {
     const mount = mountRef.current;
     if (!mount) return;
 
-    const w = mount.clientWidth;
-    const h = mount.clientHeight;
+    const w = mount.clientWidth || 400;
+    const h = mount.clientHeight || 400;
 
-    // ── Renderer ──────────────────────────────────────────────────────────
-    const renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      alpha: true,
-    });
+    // ── Renderer — solid black background, not transparent ────────────────
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
     renderer.setSize(w, h);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setClearColor(0x000000, 0); // transparent — background is CSS black
+    renderer.setClearColor(0x000000, 1);
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     mount.appendChild(renderer.domElement);
@@ -30,42 +27,41 @@ export default function ThreeScene() {
     const camera = new THREE.PerspectiveCamera(42, w / h, 0.1, 100);
     camera.position.set(0, 0, 6);
 
-    // ── Lighting — physical, minimal, directional ─────────────────────────
-    // Ambient: faint fill so the dark faces aren't pure black
-    const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+    // ── Lighting ──────────────────────────────────────────────────────────
+    // Low ambient — let the directional light do the heavy lifting
+    const ambient = new THREE.AmbientLight(0xffffff, 0.3);
     scene.add(ambient);
 
-    // Key light — top-left-front, like resend.com's subtle illumination
-    const keyLight = new THREE.DirectionalLight(0xffffff, 2.2);
-    keyLight.position.set(-4, 7, 4);
+    // Key light — top-left-front, creates visible specular on metallic surface
+    const keyLight = new THREE.DirectionalLight(0xffffff, 3.5);
+    keyLight.position.set(-5, 8, 4);
     keyLight.castShadow = true;
     scene.add(keyLight);
 
-    // Subtle fill from right — prevents full black on opposite faces
-    const fillLight = new THREE.DirectionalLight(0xffffff, 0.25);
-    fillLight.position.set(5, 2, -2);
-    scene.add(fillLight);
+    // Rim light — back-right, separates cube from background
+    const rimLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    rimLight.position.set(6, -2, -4);
+    scene.add(rimLight);
 
-    // ── Cube geometry — matte black physical object ───────────────────────
+    // ── Cube — metallic, so specular highlights are visible ───────────────
     const geometry = new THREE.BoxGeometry(2.4, 2.4, 2.4);
     const material = new THREE.MeshStandardMaterial({
-      color: 0x111111,      // near-black, not pure black
-      roughness: 0.88,      // matte — no specular highlights
-      metalness: 0.04,      // almost non-metallic
+      color: 0x0a0a0a,
+      roughness: 0.3,
+      metalness: 0.8,
     });
     const cube = new THREE.Mesh(geometry, material);
     cube.castShadow = true;
     scene.add(cube);
 
-    // ── Mouse tracking ────────────────────────────────────────────────────
+    // ── Mouse tracking — divide by 200 for subtle tilt ────────────────────
     let targetRotX = 0;
     let targetRotY = 0;
 
     const onMouseMove = (e: MouseEvent) => {
       const rect = mount.getBoundingClientRect();
-      // Map to -1…1 range
-      targetRotX = -((e.clientY - rect.top) / rect.height - 0.5) * 0.5;
-      targetRotY = ((e.clientX - rect.left) / rect.width - 0.5) * 0.5;
+      targetRotX = -(e.clientY - rect.top - rect.height / 2) / 200;
+      targetRotY = (e.clientX - rect.left - rect.width / 2) / 200;
     };
     window.addEventListener("mousemove", onMouseMove, { passive: true });
 
@@ -73,6 +69,7 @@ export default function ThreeScene() {
     const onResize = () => {
       const nw = mount.clientWidth;
       const nh = mount.clientHeight;
+      if (!nw || !nh) return;
       camera.aspect = nw / nh;
       camera.updateProjectionMatrix();
       renderer.setSize(nw, nh);
@@ -85,11 +82,10 @@ export default function ThreeScene() {
 
     const animate = () => {
       frameId = requestAnimationFrame(animate);
-      autoAngle += 0.003; // slow auto-rotate
+      autoAngle += 0.003;
 
-      // Blend auto-rotate on Y with mouse tilt
-      cube.rotation.y += (autoAngle + targetRotY - cube.rotation.y) * 0.04;
-      cube.rotation.x += (targetRotX * 0.6 - cube.rotation.x) * 0.04;
+      cube.rotation.y += (autoAngle + targetRotY - cube.rotation.y) * 0.05;
+      cube.rotation.x += (targetRotX - cube.rotation.x) * 0.05;
 
       renderer.render(scene, camera);
     };
@@ -109,11 +105,5 @@ export default function ThreeScene() {
     };
   }, []);
 
-  return (
-    <div
-      ref={mountRef}
-      className="w-full h-full"
-      aria-hidden="true"
-    />
-  );
+  return <div ref={mountRef} className="w-full h-full" aria-hidden="true" />;
 }
