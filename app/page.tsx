@@ -6,10 +6,14 @@ import Work from "@/components/Work";
 import Services from "@/components/Services";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import CursorGlow from "@/components/CursorGlow";
+import ScrollProgress from "@/components/ScrollProgress";
 
 export default function Home() {
   return (
     <main className="bg-black min-h-screen">
+      <CursorGlow />
+      <ScrollProgress />
       <Navbar />
       <Hero />
       <TechBar />
