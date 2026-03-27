@@ -10,116 +10,99 @@ export default function ThreeScene() {
     const mount = mountRef.current;
     if (!mount) return;
 
-    // Scene setup
-    const scene = new THREE.Scene();
-    const width = mount.clientWidth;
-    const height = mount.clientHeight;
+    const w = mount.clientWidth;
+    const h = mount.clientHeight;
 
-    const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 100);
-    camera.position.z = 4;
-
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(width, height);
+    // ── Renderer ──────────────────────────────────────────────────────────
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      alpha: true,
+    });
+    renderer.setSize(w, h);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setClearColor(0x000000, 0);
+    renderer.setClearColor(0x000000, 0); // transparent — background is CSS black
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     mount.appendChild(renderer.domElement);
 
-    // Icosahedron wireframe
-    const geometry = new THREE.IcosahedronGeometry(1.2, 1);
-    const edges = new THREE.EdgesGeometry(geometry);
-    const material = new THREE.LineBasicMaterial({
-      color: 0xffffff,
-      transparent: true,
-      opacity: 0.25,
+    // ── Scene & camera ────────────────────────────────────────────────────
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(42, w / h, 0.1, 100);
+    camera.position.set(0, 0, 6);
+
+    // ── Lighting — physical, minimal, directional ─────────────────────────
+    // Ambient: faint fill so the dark faces aren't pure black
+    const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambient);
+
+    // Key light — top-left-front, like resend.com's subtle illumination
+    const keyLight = new THREE.DirectionalLight(0xffffff, 2.2);
+    keyLight.position.set(-4, 7, 4);
+    keyLight.castShadow = true;
+    scene.add(keyLight);
+
+    // Subtle fill from right — prevents full black on opposite faces
+    const fillLight = new THREE.DirectionalLight(0xffffff, 0.25);
+    fillLight.position.set(5, 2, -2);
+    scene.add(fillLight);
+
+    // ── Cube geometry — matte black physical object ───────────────────────
+    const geometry = new THREE.BoxGeometry(2.4, 2.4, 2.4);
+    const material = new THREE.MeshStandardMaterial({
+      color: 0x111111,      // near-black, not pure black
+      roughness: 0.88,      // matte — no specular highlights
+      metalness: 0.04,      // almost non-metallic
     });
-    const wireframe = new THREE.LineSegments(edges, material);
-    scene.add(wireframe);
+    const cube = new THREE.Mesh(geometry, material);
+    cube.castShadow = true;
+    scene.add(cube);
 
-    // Inner solid icosahedron for depth
-    const innerGeo = new THREE.IcosahedronGeometry(1.18, 1);
-    const innerMat = new THREE.MeshBasicMaterial({
-      color: 0x080808,
-      transparent: true,
-      opacity: 0.6,
-    });
-    const inner = new THREE.Mesh(innerGeo, innerMat);
-    scene.add(inner);
+    // ── Mouse tracking ────────────────────────────────────────────────────
+    let targetRotX = 0;
+    let targetRotY = 0;
 
-    // Outer glow ring
-    const ringGeo = new THREE.TorusGeometry(1.6, 0.004, 8, 80);
-    const ringMat = new THREE.MeshBasicMaterial({
-      color: 0xffffff,
-      transparent: true,
-      opacity: 0.08,
-    });
-    const ring = new THREE.Mesh(ringGeo, ringMat);
-    ring.rotation.x = Math.PI * 0.3;
-    scene.add(ring);
-
-    // Mouse interaction
-    let mouseX = 0;
-    let mouseY = 0;
-    let targetX = 0;
-    let targetY = 0;
-
-    const handleMouseMove = (e: MouseEvent) => {
+    const onMouseMove = (e: MouseEvent) => {
       const rect = mount.getBoundingClientRect();
-      mouseX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-      mouseY = -((e.clientY - rect.top) / rect.height - 0.5) * 2;
+      // Map to -1…1 range
+      targetRotX = -((e.clientY - rect.top) / rect.height - 0.5) * 0.5;
+      targetRotY = ((e.clientX - rect.left) / rect.width - 0.5) * 0.5;
     };
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
 
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-
-    // Resize handler
-    const handleResize = () => {
-      const w = mount.clientWidth;
-      const h = mount.clientHeight;
-      camera.aspect = w / h;
+    // ── Resize ────────────────────────────────────────────────────────────
+    const onResize = () => {
+      const nw = mount.clientWidth;
+      const nh = mount.clientHeight;
+      camera.aspect = nw / nh;
       camera.updateProjectionMatrix();
-      renderer.setSize(w, h);
+      renderer.setSize(nw, nh);
     };
-    window.addEventListener("resize", handleResize, { passive: true });
+    window.addEventListener("resize", onResize, { passive: true });
 
-    // Animation loop
+    // ── Render loop ───────────────────────────────────────────────────────
     let frameId: number;
-    let time = 0;
+    let autoAngle = 0;
 
     const animate = () => {
       frameId = requestAnimationFrame(animate);
-      time += 0.005;
+      autoAngle += 0.003; // slow auto-rotate
 
-      // Smooth mouse follow
-      targetX += (mouseX * 0.4 - targetX) * 0.05;
-      targetY += (mouseY * 0.4 - targetY) * 0.05;
-
-      wireframe.rotation.y = time * 0.3 + targetX;
-      wireframe.rotation.x = time * 0.1 + targetY;
-      inner.rotation.y = wireframe.rotation.y;
-      inner.rotation.x = wireframe.rotation.x;
-      ring.rotation.z = time * 0.15;
-      ring.rotation.y = targetX * 0.5;
-
-      // Pulse opacity
-      const pulse = 0.2 + Math.sin(time * 1.2) * 0.06;
-      (wireframe.material as THREE.LineBasicMaterial).opacity = pulse;
+      // Blend auto-rotate on Y with mouse tilt
+      cube.rotation.y += (autoAngle + targetRotY - cube.rotation.y) * 0.04;
+      cube.rotation.x += (targetRotX * 0.6 - cube.rotation.x) * 0.04;
 
       renderer.render(scene, camera);
     };
-
     animate();
 
+    // ── Cleanup ───────────────────────────────────────────────────────────
     return () => {
       cancelAnimationFrame(frameId);
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("resize", handleResize);
-      renderer.dispose();
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("resize", onResize);
       geometry.dispose();
-      edges.dispose();
       material.dispose();
-      innerGeo.dispose();
-      innerMat.dispose();
-      ringGeo.dispose();
-      ringMat.dispose();
+      renderer.dispose();
       if (mount.contains(renderer.domElement)) {
         mount.removeChild(renderer.domElement);
       }

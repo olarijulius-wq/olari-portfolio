@@ -1,28 +1,25 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
+import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-space",
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-serif",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-sans",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Olari Julius — Full-Stack Developer",
   description:
-    "Full-Stack Developer from Estonia. I build products that work. Fast. SaaS apps, booking systems, MVPs — shipped with Next.js, Supabase, and AI.",
-  keywords: [
-    "Full-Stack Developer",
-    "Next.js",
-    "TypeScript",
-    "Supabase",
-    "Stripe",
-    "Estonia",
-    "SaaS",
-    "MVP",
-  ],
+    "Full-Stack Developer from Estonia. I build products that work. Fast. SaaS apps, booking systems, MVPs shipped with Next.js, Supabase, and AI.",
   authors: [{ name: "Olari Julius" }],
   openGraph: {
     title: "Olari Julius — Full-Stack Developer",
@@ -37,11 +34,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} h-full`}>
-      <body
-        className="font-[family-name:var(--font-space)] bg-[#080808] text-white antialiased min-h-full"
-        style={{ fontFamily: "var(--font-space), system-ui, sans-serif" }}
-      >
+    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
+      <body className="bg-black text-white antialiased">
         {children}
       </body>
     </html>

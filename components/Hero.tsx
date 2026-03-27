@@ -1,176 +1,119 @@
 "use client";
 
-import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
-import { ArrowDown, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 const ThreeScene = dynamic(() => import("./ThreeScene"), { ssr: false });
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
-  },
-};
+const go = (href: string) =>
+  document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
 
 export default function Hero() {
-  const handleScroll = (href: string) => {
-    const el = document.querySelector(href);
-    el?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section
-      className="relative min-h-screen w-full overflow-hidden flex items-center"
-      aria-label="Hero section"
+      className="relative flex items-center min-h-[calc(100vh-58px)] w-full overflow-hidden"
+      aria-label="Hero"
     >
-      {/* Grid background */}
-      <div className="absolute inset-0 grid-bg opacity-60" aria-hidden="true" />
-
-      {/* Radial gradient glow centre */}
+      {/* ── Top hairline + radial glow ─────────────────────────────────────── */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] pointer-events-none"
         aria-hidden="true"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 60% 40%, rgba(255,255,255,0.03) 0%, transparent 70%)",
+            "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(255,255,255,0.05) 0%, transparent 70%)",
         }}
       />
 
-      {/* Top fade */}
-      <div
-        className="absolute top-0 left-0 right-0 h-32 pointer-events-none"
-        aria-hidden="true"
-        style={{
-          background: "linear-gradient(to bottom, #080808 0%, transparent 100%)",
-        }}
-      />
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center py-20 lg:py-28">
 
-      {/* Bottom fade */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
-        aria-hidden="true"
-        style={{
-          background: "linear-gradient(to top, #080808 0%, transparent 100%)",
-        }}
-      />
-
-      {/* Three.js — right side desktop, centered mobile */}
-      <div
-        className="absolute right-0 top-0 w-full md:w-1/2 h-full opacity-70 pointer-events-none"
-        aria-hidden="true"
-      >
-        <ThreeScene />
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 pt-28 pb-24">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="max-w-2xl"
-        >
-          {/* Badge */}
-          <motion.div variants={itemVariants} className="mb-8">
-            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs text-zinc-400 font-medium tracking-wide">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" aria-hidden="true" />
-              Available for projects
-            </span>
-          </motion.div>
-
-          {/* Name */}
-          <motion.h1
-            variants={itemVariants}
-            className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none mb-4"
+        {/* ── Left — text content ────────────────────────────────────────────── */}
+        <div>
+          {/* Available badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.02] mb-8"
           >
-            <span className="text-gradient">Olari</span>
-            <br />
-            <span className="text-white">Julius</span>
-          </motion.h1>
-
-          {/* Role */}
-          <motion.div variants={itemVariants} className="mb-6">
-            <span className="text-xl md:text-2xl font-medium text-zinc-400 tracking-tight">
-              Full-Stack Developer
+            <span
+              className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"
+              aria-hidden="true"
+            />
+            <span className="text-xs text-zinc-400 font-medium tracking-wide">
+              Available for work
             </span>
           </motion.div>
+
+          {/* Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="font-display text-[clamp(3rem,7vw,5.5rem)] font-bold leading-[1.04] tracking-tight mb-6"
+          >
+            <span className="effect-font-gradient">Full-stack</span>
+            <br />
+            <span className="effect-font-gradient">developer.</span>
+          </motion.h1>
 
           {/* Tagline */}
           <motion.p
-            variants={itemVariants}
-            className="text-lg md:text-xl text-zinc-500 mb-10 leading-relaxed max-w-lg"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="text-lg text-zinc-400 leading-relaxed mb-10 max-w-md"
           >
             I build products that work.{" "}
-            <span className="text-white font-medium">Fast.</span>
+            <span className="text-white font-medium">Fast.</span>{" "}
+            SaaS apps, booking platforms, and MVPs — from idea to shipped.
           </motion.p>
 
-          {/* CTAs */}
+          {/* CTAs — frosted primary + ghost secondary, same as Navbar */}
           <motion.div
-            variants={itemVariants}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.38 }}
             className="flex flex-wrap items-center gap-3"
           >
             <button
-              onClick={() => handleScroll("#work")}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black text-sm font-semibold rounded-full hover:bg-zinc-200 transition-colors duration-200 cursor-pointer"
+              onClick={() => go("#work")}
+              className="relative inline-flex items-center justify-center text-white border-[2px] border-white/5 backdrop-blur-[25px] bg-[linear-gradient(104deg,rgba(253,253,253,0.05)_5%,rgba(240,240,228,0.1)_100%)] hover:bg-white hover:text-black transition-all duration-200 rounded-2xl px-5 h-11 text-sm font-semibold cursor-pointer"
             >
-              View work
-              <ArrowRight size={15} aria-hidden="true" />
+              View my work
             </button>
             <button
-              onClick={() => handleScroll("#contact")}
-              className="inline-flex items-center gap-2 px-6 py-3 border border-white/15 text-white text-sm font-medium rounded-full hover:bg-white/5 hover:border-white/25 transition-all duration-200 cursor-pointer"
+              onClick={() => go("#contact")}
+              className="h-11 px-5 text-sm font-semibold text-zinc-400 hover:text-white transition-colors duration-150 cursor-pointer"
             >
-              Get in touch
+              Get in touch →
             </button>
           </motion.div>
+        </div>
 
-          {/* Floating stat pills */}
-          <motion.div
-            variants={itemVariants}
-            className="mt-16 flex flex-wrap gap-3"
-          >
-            {["Next.js 15", "TypeScript", "Supabase", "Stripe"].map((tech) => (
-              <span
-                key={tech}
-                className="px-3 py-1 text-xs text-zinc-500 border border-white/6 rounded-full bg-white/3"
-              >
-                {tech}
-              </span>
-            ))}
-          </motion.div>
+        {/* ── Right — Three.js matte black cube ──────────────────────────────── */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="relative aspect-square w-full max-w-[480px] mx-auto lg:max-w-none"
+          aria-hidden="true"
+        >
+          {/* Card with hairline border */}
+          <div className="absolute inset-0 rounded-2xl border border-white/[0.08] bg-white/[0.01] overflow-hidden">
+            <ThreeScene />
+          </div>
+
+          {/* Corner accent marks — resend.com card detail */}
+          <span className="absolute -top-px -left-px w-5 h-5 border-t-2 border-l-2 border-white/20 rounded-tl-2xl" />
+          <span className="absolute -top-px -right-px w-5 h-5 border-t-2 border-r-2 border-white/20 rounded-tr-2xl" />
+          <span className="absolute -bottom-px -left-px w-5 h-5 border-b-2 border-l-2 border-white/20 rounded-bl-2xl" />
+          <span className="absolute -bottom-px -right-px w-5 h-5 border-b-2 border-r-2 border-white/20 rounded-br-2xl" />
         </motion.div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.button
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.4, duration: 0.6 }}
-        onClick={() => handleScroll("#about")}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-zinc-600 hover:text-zinc-400 transition-colors cursor-pointer group"
-        aria-label="Scroll to about section"
-      >
-        <span className="text-xs tracking-widest uppercase font-medium">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <ArrowDown size={14} aria-hidden="true" />
-        </motion.div>
-      </motion.button>
     </section>
   );
 }

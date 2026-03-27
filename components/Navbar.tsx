@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const navLinks = [
+const links = [
   { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
@@ -12,131 +12,138 @@ const navLinks = [
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const fn = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", fn, { passive: true });
+    return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  const handleNav = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    setMenuOpen(false);
-    const el = document.querySelector(href);
-    el?.scrollIntoView({ behavior: "smooth" });
+  const go = (href: string) => {
+    setOpen(false);
+    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <motion.nav
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-auto"
-      role="navigation"
-      aria-label="Main navigation"
+    // Matches resend.com: sticky, transparent until scrolled, then blurred dark border-b
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "border-b border-white/[0.08] bg-black/70 backdrop-blur-xl"
+          : "bg-transparent"
+      }`}
+      role="banner"
     >
-      <div
-        className={`flex items-center gap-1 px-2 py-2 rounded-full border transition-all duration-300 ${
-          scrolled
-            ? "bg-black/80 border-white/10 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.6)]"
-            : "bg-black/50 border-white/8 backdrop-blur-md"
-        }`}
-      >
-        {/* Logo */}
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }}
-          className="px-4 py-2 text-sm font-semibold text-white tracking-tight cursor-pointer select-none"
-          aria-label="Olari Julius — home"
-        >
-          OJ
-        </a>
+      <div className="mx-auto max-w-7xl px-6 md:px-10">
+        {/* Desktop — 58px height, exactly resend.com */}
+        <div className="hidden h-[58px] md:flex items-center justify-between">
+          {/* Logo */}
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="text-sm font-semibold text-white tracking-tight cursor-pointer select-none"
+            aria-label="Olari Julius — scroll to top"
+          >
+            Olari Julius
+          </button>
 
-        {/* Divider */}
-        <div className="w-px h-4 bg-white/10" />
+          {/* Centre nav links */}
+          <nav className="flex items-center" aria-label="Main navigation">
+            {links.map((l) => (
+              <button
+                key={l.href}
+                onClick={() => go(l.href)}
+                className="h-[58px] flex items-center mx-3 text-sm font-medium text-zinc-400 hover:text-white transition-colors duration-150 cursor-pointer select-none"
+              >
+                {l.label}
+              </button>
+            ))}
+          </nav>
 
-        {/* Nav links — desktop */}
-        <div className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={(e) => handleNav(e, link.href)}
-              className="px-4 py-2 text-sm text-zinc-400 hover:text-white rounded-full hover:bg-white/5 transition-all duration-200 cursor-pointer"
+          {/* Right CTAs — resend.com pattern: Log In ghost + Get Started frosted */}
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => go("#work")}
+              className="text-sm font-semibold text-zinc-400 hover:text-white transition-colors duration-150 cursor-pointer px-4 h-10"
             >
-              {link.label}
-            </a>
-          ))}
+              View work
+            </button>
+            <button
+              onClick={() => go("#contact")}
+              className="relative inline-flex items-center justify-center text-white border-[2px] border-white/5 backdrop-blur-[25px] bg-[linear-gradient(104deg,rgba(253,253,253,0.05)_5%,rgba(240,240,228,0.1)_100%)] hover:bg-white hover:text-black transition-all duration-200 rounded-2xl px-4 h-10 text-sm font-semibold cursor-pointer"
+              aria-label="Get in touch"
+            >
+              Get in touch
+            </button>
+          </div>
         </div>
 
-        {/* CTA button */}
-        <a
-          href="#contact"
-          onClick={(e) => handleNav(e, "#contact")}
-          className="hidden md:inline-flex ml-1 px-4 py-2 text-sm font-medium text-black bg-white rounded-full hover:bg-zinc-200 transition-colors duration-200 cursor-pointer"
-        >
-          Hire me
-        </a>
-
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden px-3 py-2 text-zinc-400 hover:text-white transition-colors cursor-pointer"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={menuOpen}
-        >
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-            {menuOpen ? (
-              <>
-                <path d="M2 2L16 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M16 2L2 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              </>
-            ) : (
-              <>
-                <path d="M2 5H16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M2 9H16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M2 13H16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              </>
-            )}
-          </svg>
-        </button>
+        {/* Mobile — 56px */}
+        <div className="flex h-14 md:hidden items-center justify-between">
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="text-sm font-semibold text-white cursor-pointer select-none"
+          >
+            Olari Julius
+          </button>
+          <button
+            onClick={() => setOpen(!open)}
+            className="w-10 h-10 flex items-center justify-center text-zinc-400 hover:text-white transition-colors cursor-pointer rounded-lg hover:bg-white/5"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              {open ? (
+                <>
+                  <path d="M4 4L16 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M16 4L4 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                </>
+              ) : (
+                <>
+                  <path d="M3 6h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M3 10h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M3 14h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                </>
+              )}
+            </svg>
+          </button>
+        </div>
       </div>
 
       {/* Mobile dropdown */}
       <AnimatePresence>
-        {menuOpen && (
+        {open && (
           <motion.div
-            initial={{ opacity: 0, y: -8, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -8, scale: 0.97 }}
+            id="mobile-menu"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 bg-black/90 border border-white/10 backdrop-blur-xl rounded-2xl py-2 shadow-xl"
+            className="md:hidden overflow-hidden border-t border-white/[0.08] bg-black/90 backdrop-blur-xl"
           >
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => handleNav(e, link.href)}
-                className="block px-5 py-3 text-sm text-zinc-400 hover:text-white hover:bg-white/5 transition-all cursor-pointer"
-              >
-                {link.label}
-              </a>
-            ))}
-            <div className="mx-4 my-2 border-t border-white/8" />
-            <a
-              href="#contact"
-              onClick={(e) => handleNav(e, "#contact")}
-              className="block mx-4 mb-1 px-4 py-2 text-sm font-medium text-center text-black bg-white rounded-full hover:bg-zinc-200 transition-colors cursor-pointer"
-            >
-              Hire me
-            </a>
+            <nav className="flex flex-col px-6 py-3 gap-0.5" aria-label="Mobile navigation">
+              {links.map((l) => (
+                <button
+                  key={l.href}
+                  onClick={() => go(l.href)}
+                  className="text-sm text-zinc-400 hover:text-white py-3 text-left transition-colors cursor-pointer"
+                >
+                  {l.label}
+                </button>
+              ))}
+              <div className="pt-3 pb-1 border-t border-white/[0.08] mt-2">
+                <button
+                  onClick={() => go("#contact")}
+                  className="w-full py-2.5 text-sm font-semibold text-white border-[2px] border-white/5 bg-[linear-gradient(104deg,rgba(253,253,253,0.05)_5%,rgba(240,240,228,0.1)_100%)] hover:bg-white hover:text-black rounded-2xl transition-all duration-200 cursor-pointer"
+                >
+                  Get in touch
+                </button>
+              </div>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </header>
   );
 }
