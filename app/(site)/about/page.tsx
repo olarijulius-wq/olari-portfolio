@@ -12,7 +12,8 @@ import {
   websiteGraphId,
 } from "@/app/lib/site";
 
-const aboutTitle = `About ${personName}`;
+const aboutTitle = "About";
+const aboutHeading = `About ${personName}`;
 const aboutDescription =
   "Background, experience, and working style of Olari Julius Valdma, Estonian full-stack developer and product-minded builder.";
 
@@ -48,7 +49,7 @@ export default function AboutPage() {
       />
       <PageHeader
         eyebrow="About"
-        title={aboutTitle}
+        title={aboutHeading}
         description="Background, how I work end to end, and the kinds of products I like shipping — from SaaS and booking flows to fast MVPs."
       />
       <section className="mx-auto max-w-5xl px-6 py-16 md:px-10 md:py-20">

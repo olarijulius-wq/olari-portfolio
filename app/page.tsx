@@ -8,6 +8,7 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import InteractiveGradientBackground from "@/components/InteractiveGradientBackground";
 import {
+  brandName,
   contactEmail,
   personAlternateName,
   personGraphId,
@@ -59,7 +60,7 @@ const jsonLd = {
       "@type": "WebSite",
       "@id": websiteGraphId,
       url: siteUrl,
-      name: siteTitle,
+      name: brandName,
       description: siteDescription,
       inLanguage: "en",
       about: {

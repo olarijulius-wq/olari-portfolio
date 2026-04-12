@@ -12,6 +12,10 @@ export function absoluteUrl(path: string) {
   return new URL(path, siteUrl).toString();
 }
 
+function withPersonSuffix(title: string) {
+  return title.includes(personName) ? title : `${title} | ${personName}`;
+}
+
 export function createPageMetadata({
   title,
   description,
@@ -27,7 +31,7 @@ export function createPageMetadata({
       canonical: path,
     },
     openGraph: {
-      title: `${title} | ${personName}`,
+      title: withPersonSuffix(title),
       description,
       url,
       type,
@@ -35,7 +39,7 @@ export function createPageMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} | ${personName}`,
+      title: withPersonSuffix(title),
       description,
     },
   };
