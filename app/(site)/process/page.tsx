@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
+import { glassCta, glassPanelInteractive } from "@/app/lib/glass";
 import { createPageMetadata } from "@/app/lib/metadata";
 
 const steps = [
@@ -41,7 +42,7 @@ export default function ProcessPage() {
         <div className="grid gap-5 md:grid-cols-2">
           {steps.map((step, index) => (
             <Reveal key={step.title} delay={index * 0.08}>
-              <article className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-8">
+              <article className={`rounded-3xl p-8 ${glassPanelInteractive}`}>
                 <p className="text-sm text-zinc-500">{String(index + 1).padStart(2, "0")}</p>
                 <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-white">
                   {step.title}
@@ -52,10 +53,7 @@ export default function ProcessPage() {
           ))}
         </div>
         <Reveal className="mt-10">
-          <Link
-            href="/contact"
-            className="inline-flex items-center rounded-full border border-white/[0.12] bg-white/[0.05] px-5 py-3 text-sm font-medium text-white transition hover:border-white/[0.22] hover:bg-white/[0.09]"
-          >
+          <Link href="/contact" className={`${glassCta} rounded-2xl px-5 py-3 text-sm`}>
             Start with discovery
           </Link>
         </Reveal>

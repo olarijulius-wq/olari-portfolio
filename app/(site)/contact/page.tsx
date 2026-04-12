@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import ContactForm from "@/components/ContactForm";
 import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
+import { glassCta, glassPanelInteractive } from "@/app/lib/glass";
 import { createPageMetadata } from "@/app/lib/metadata";
 import { calendarUrl, contactEmail, personName } from "@/app/lib/site";
 
@@ -21,7 +22,7 @@ export default function ContactPage() {
       />
       <section className="mx-auto grid max-w-7xl gap-8 px-6 py-16 md:grid-cols-[1.05fr_0.95fr] md:px-10 md:py-20">
         <Reveal>
-          <div className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-8">
+          <div className={`rounded-3xl p-8 ${glassPanelInteractive}`}>
             <p className="text-[11px] uppercase tracking-[0.2em] text-zinc-600">Send a message</p>
             <p className="mt-4 max-w-xl leading-8 text-zinc-400">
               Include what you’re building, what has to happen first, and what would make this project successful.
@@ -32,12 +33,12 @@ export default function ContactPage() {
           </div>
         </Reveal>
         <Reveal delay={0.08}>
-          <div className="space-y-5 rounded-3xl border border-white/[0.08] bg-white/[0.02] p-8">
+          <div className={`space-y-5 rounded-3xl p-8 ${glassPanelInteractive}`}>
             <div>
               <p className="text-[11px] uppercase tracking-[0.2em] text-zinc-600">Fallback</p>
               <a
                 href={`mailto:${contactEmail}`}
-                className="mt-4 inline-block font-display text-3xl text-white underline decoration-white/20 underline-offset-8"
+                className={`${glassCta} mt-4 inline-flex max-w-full break-all rounded-2xl px-4 py-3 text-left font-display text-xl font-semibold md:text-2xl`}
               >
                 {contactEmail}
               </a>
@@ -49,7 +50,7 @@ export default function ContactPage() {
                   href={calendarUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 inline-flex items-center rounded-full border border-white/[0.12] bg-white/[0.05] px-4 py-2 text-sm font-medium text-white transition hover:border-white/[0.22] hover:bg-white/[0.09]"
+                  className={`${glassCta} mt-4 rounded-2xl px-4 py-2 text-sm`}
                 >
                   Book a call
                 </a>

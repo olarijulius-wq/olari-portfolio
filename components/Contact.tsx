@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { glassCta, glassGhost } from "@/app/lib/glass";
 
 // Update these to real URLs before going live
 const EMAIL = "hello@olarijulius.dev";
@@ -75,7 +76,7 @@ export default function Contact() {
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.4 }}
             className="text-[11px] text-zinc-600 uppercase tracking-[0.2em] font-medium mb-6"
           >
             Contact
@@ -85,7 +86,7 @@ export default function Contact() {
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.5, delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
             className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.05] mb-5"
           >
             Let&apos;s build
@@ -97,7 +98,7 @@ export default function Contact() {
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.18 }}
+            transition={{ duration: 0.45, delay: 0.12 }}
             className="text-base text-zinc-500 mb-10 leading-relaxed"
           >
             Have a project in mind? I&apos;ll get back to you within 24 hours.
@@ -108,8 +109,8 @@ export default function Contact() {
             href={`mailto:${EMAIL}`}
             initial={{ opacity: 0, y: 12 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.28 }}
-            className="inline-block text-2xl md:text-3xl font-semibold text-white hover:text-white transition-all duration-200 mb-12 underline underline-offset-8 decoration-white/20 hover:decoration-white/55 rounded-lg px-2 -mx-2 py-1 hover:bg-white/[0.06] hover:shadow-[0_0_48px_rgba(255,255,255,0.06)] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            transition={{ duration: 0.45, delay: 0.2 }}
+            className={`${glassCta} mb-12 inline-flex max-w-full break-all rounded-2xl px-5 py-3 text-left text-xl font-semibold md:text-2xl`}
           >
             {EMAIL}
           </motion.a>
@@ -118,7 +119,7 @@ export default function Contact() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.38 }}
+            transition={{ duration: 0.45, delay: 0.26 }}
             className="flex items-center gap-3"
           >
             {socials.map((social) => (
@@ -128,7 +129,7 @@ export default function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.name}
-                className="w-10 h-10 rounded-full border border-white/[0.08] flex items-center justify-center text-zinc-500 hover:text-white hover:border-white/30 hover:bg-white/[0.06] hover:shadow-[0_0_24px_rgba(255,255,255,0.08)] hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/35 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                className={`${glassGhost} h-11 w-11 rounded-2xl p-0 text-zinc-500 hover:scale-105`}
               >
                 {social.icon}
               </a>

@@ -4,6 +4,7 @@ import PageHeader from "@/components/PageHeader";
 import Prose from "@/components/Prose";
 import Reveal from "@/components/Reveal";
 import { createPageMetadata } from "@/app/lib/metadata";
+import { glassPanelInteractive } from "@/app/lib/glass";
 import {
   personAlternateName,
   personGraphId,
@@ -12,13 +13,13 @@ import {
   websiteGraphId,
 } from "@/app/lib/site";
 
-const aboutTitle = "About";
-const aboutHeading = `About ${personName}`;
+const aboutMetaTitle = `About ${personName}`;
+const aboutHeading = aboutMetaTitle;
 const aboutDescription =
   "Background, experience, and working style of Olari Julius Valdma, Estonian full-stack developer and product-minded builder.";
 
 export const metadata: Metadata = createPageMetadata({
-  title: aboutTitle,
+  title: aboutMetaTitle,
   description: aboutDescription,
   path: "/about",
 });
@@ -30,7 +31,7 @@ const profileJsonLd = {
       "@type": "ProfilePage",
       "@id": `${siteUrl}/about#profilepage`,
       url: `${siteUrl}/about`,
-      name: aboutTitle,
+      name: aboutMetaTitle,
       description: aboutDescription,
       isPartOf: { "@id": websiteGraphId },
       mainEntity: { "@id": personGraphId },
@@ -54,13 +55,12 @@ export default function AboutPage() {
       />
       <section className="mx-auto max-w-5xl px-6 py-16 md:px-10 md:py-20">
         <Reveal>
-          <div className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-8 md:p-10">
+          <div className={`rounded-3xl p-8 md:p-10 ${glassPanelInteractive}`}>
             <Prose>
               <p>
-                I&apos;m {personName}, an Estonian full-stack developer also referred to as{" "}
-                {personAlternateName} in shorter contexts. This page is the profile anchor for who I
-                am and how I work: product-minded engineering with a bias toward finished software, not
-                handoff theatre.
+                I&apos;m {personName}, an Estonian full-stack developer — you may also see{" "}
+                {personAlternateName}. This page is the long-form profile: how I work, what I optimize
+                for, and the kind of builds I take on.
               </p>
               <p>
                 I focus on SaaS products, booking systems, and fast-moving MVP work — projects where
@@ -81,8 +81,6 @@ export default function AboutPage() {
                 <Link href="/projects">Projects and case studies</Link>
                 {" · "}
                 <Link href="/services">Services and scopes</Link>
-                {" · "}
-                <Link href="/notes">Notes</Link>
                 {" · "}
                 <Link href="/contact">Contact</Link>
               </p>

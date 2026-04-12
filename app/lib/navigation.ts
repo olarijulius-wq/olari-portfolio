@@ -8,9 +8,6 @@ export const primaryNavigation: NavigationItem[] = [
   { label: "Process", href: "/process" },
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
-  { label: "Notes", href: "/notes" },
-  { label: "Uses", href: "/uses" },
-  { label: "Now", href: "/now" },
   { label: "Contact", href: "/contact" },
 ];
 

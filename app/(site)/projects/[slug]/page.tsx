@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
+import { glassCta, glassGhost, glassPanelInteractive } from "@/app/lib/glass";
 import { createPageMetadata } from "@/app/lib/metadata";
 import { getProjectBySlug, projects } from "@/app/lib/projects";
 import { personName } from "@/app/lib/site";
@@ -54,11 +55,11 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       />
       <section className="mx-auto max-w-7xl px-6 py-16 md:px-10 md:py-20">
         <div className="grid gap-8 md:grid-cols-[1.2fr_0.8fr]">
-          <Reveal className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-8">
+          <Reveal className={`rounded-3xl p-8 ${glassPanelInteractive}`}>
             <p className="text-[11px] uppercase tracking-[0.2em] text-zinc-600">Problem</p>
             <p className="mt-4 text-base leading-8 text-zinc-400">{project.problem}</p>
           </Reveal>
-          <Reveal delay={0.08} className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-8">
+          <Reveal delay={0.08} className={`rounded-3xl p-8 ${glassPanelInteractive}`}>
             <p className="text-[11px] uppercase tracking-[0.2em] text-zinc-600">Approach</p>
             <p className="mt-4 text-base leading-8 text-zinc-400">{project.approach}</p>
             <div className="mt-6">
@@ -66,7 +67,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center rounded-full border border-white/[0.12] bg-white/[0.05] px-4 py-2 text-sm font-medium text-white transition hover:border-white/[0.22] hover:bg-white/[0.09]"
+                className={`${glassCta} rounded-2xl px-4 py-2 text-sm`}
               >
                 Visit live site
               </a>
@@ -75,7 +76,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         </div>
 
         <div className="mt-8 grid gap-8 md:grid-cols-2">
-          <Reveal className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-8">
+          <Reveal className={`rounded-3xl p-8 ${glassPanelInteractive}`}>
             <p className="text-[11px] uppercase tracking-[0.2em] text-zinc-600">Stack</p>
             <ul className="mt-5 space-y-3 text-base text-zinc-400">
               {project.stack.map((item) => (
@@ -85,7 +86,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               ))}
             </ul>
           </Reveal>
-          <Reveal delay={0.08} className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-8">
+          <Reveal delay={0.08} className={`rounded-3xl p-8 ${glassPanelInteractive}`}>
             <p className="text-[11px] uppercase tracking-[0.2em] text-zinc-600">Results</p>
             <ul className="mt-5 space-y-4 text-base leading-8 text-zinc-400">
               {project.results.map((item) => (
@@ -96,20 +97,18 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         </div>
 
         <Reveal className="mt-8">
-          <p className="mb-8 text-sm text-zinc-500">
-            Built by{" "}
-            <Link href="/about" className="text-zinc-300 underline decoration-white/15 underline-offset-4 hover:text-white">
-              {personName}
+          <p className="mb-8 flex flex-wrap items-center gap-x-1 gap-y-2 text-sm text-zinc-500">
+            <Link href="/about" className={`${glassCta} rounded-2xl px-3 py-1.5 text-xs`}>
+              Builder profile
             </Link>
-            . More on{" "}
-            <Link href="/projects" className="text-zinc-300 underline decoration-white/15 underline-offset-4 hover:text-white">
-              other projects
-            </Link>{" "}
-            and{" "}
-            <Link href="/services" className="text-zinc-300 underline decoration-white/15 underline-offset-4 hover:text-white">
-              services
+            <span className="text-zinc-600">·</span>
+            <Link href="/projects" className={`${glassGhost} rounded-2xl px-3 py-1.5 text-xs`}>
+              All projects
             </Link>
-            .
+            <span className="text-zinc-600">·</span>
+            <Link href="/services" className={`${glassGhost} rounded-2xl px-3 py-1.5 text-xs`}>
+              Services
+            </Link>
           </p>
           <div className="mb-6">
             <p className="text-[11px] uppercase tracking-[0.2em] text-zinc-600">Gallery</p>
@@ -119,7 +118,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             {project.gallery.map((image) => (
               <figure
                 key={image.src}
-                className="overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.02]"
+                className={`overflow-hidden rounded-3xl ${glassPanelInteractive}`}
               >
                 <Image
                   src={image.src}

@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { glassGhost, glassPanelInteractive } from "@/app/lib/glass";
 import SpotlightSurface from "@/components/SpotlightSurface";
 
 const services = [
@@ -46,7 +47,7 @@ export default function Services() {
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.45 }}
           className="mb-14"
         >
           <p className="text-[11px] text-zinc-600 uppercase tracking-[0.2em] font-medium mb-3">
@@ -65,8 +66,8 @@ export default function Services() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{
-                duration: 0.6,
-                delay: i * 0.1,
+                duration: 0.45,
+                delay: i * 0.08,
                 ease: [0.16, 1, 0.3, 1],
               }}
               className="py-6 md:py-0 md:px-6 first:md:pl-0 last:md:pr-0"
@@ -74,7 +75,7 @@ export default function Services() {
               <SpotlightSurface
                 glowRadius={480}
                 glowStrength={0.1}
-                className="group rounded-2xl border border-transparent bg-transparent transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.03] active:scale-[0.995] md:px-4 md:py-8 py-6 px-1 -mx-1 md:mx-0"
+                className={`group rounded-2xl md:px-4 md:py-8 py-6 px-1 -mx-1 md:mx-0 ${glassPanelInteractive}`}
               >
                 <p className="text-[11px] text-zinc-600 uppercase tracking-[0.15em] font-medium mb-4 transition-colors group-hover:text-zinc-500">
                   {service.price}
@@ -94,18 +95,19 @@ export default function Services() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.45, delay: 0.28 }}
           className="mt-14 pt-8 border-t border-white/[0.08]"
         >
           <p className="text-sm text-zinc-600">
             Not sure what you need?{" "}
             <button
+              type="button"
               onClick={() =>
                 document
                   .querySelector("#contact")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              className="text-zinc-400 hover:text-white transition-colors cursor-pointer underline underline-offset-4 decoration-white/25 hover:decoration-white/50 rounded-sm px-0.5 -mx-0.5 hover:bg-white/[0.06] active:scale-[0.98]"
+              className={`${glassGhost} cursor-pointer rounded-2xl px-4 py-2 text-sm`}
             >
               Let&apos;s talk
             </button>

@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { glassCta, glassGhost, glassPanelInteractive } from "@/app/lib/glass";
 import SpotlightSurface from "@/components/SpotlightSurface";
 import { projects } from "@/app/lib/projects";
-import { personName } from "@/app/lib/site";
 
 export default function Work() {
   const ref = useRef<HTMLElement>(null);
@@ -22,14 +22,14 @@ export default function Work() {
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.45 }}
           className="mb-14"
         >
           <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.2em] text-zinc-600">
             Work
           </p>
           <h2 className="font-display text-4xl font-bold tracking-tight text-white md:text-5xl">
-            Selected projects by {personName}
+            Selected projects
           </h2>
         </motion.div>
 
@@ -40,8 +40,8 @@ export default function Work() {
               initial={{ opacity: 0, y: 24 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{
-                duration: 0.7,
-                delay: i * 0.12,
+                duration: 0.5,
+                delay: i * 0.08,
                 ease: [0.16, 1, 0.3, 1],
               }}
               className="group relative"
@@ -49,14 +49,14 @@ export default function Work() {
               <SpotlightSurface
                 glowRadius={640}
                 glowStrength={0.12}
-                className="rounded-2xl border border-white/[0.08] bg-white/[0.02] transition-all duration-300 hover:border-white/[0.18] hover:shadow-[0_0_60px_rgba(255,255,255,0.04)]"
+                className={`group/card rounded-2xl ${glassPanelInteractive}`}
               >
                 <div
-                  className="absolute left-0 right-0 top-0 z-20 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                  className="absolute left-0 right-0 top-0 z-20 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-0 transition-opacity duration-200 group-hover/card:opacity-100"
                   aria-hidden="true"
                 />
                 <div
-                  className="absolute left-1/2 top-0 z-20 h-24 w-72 -translate-x-1/2 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                  className="absolute left-1/2 top-0 z-20 h-24 w-72 -translate-x-1/2 opacity-0 transition-opacity duration-200 group-hover/card:opacity-100"
                   style={{
                     background:
                       "radial-gradient(ellipse at top, rgba(255,255,255,0.06) 0%, transparent 72%)",
@@ -83,7 +83,7 @@ export default function Work() {
 
                     <div className="flex shrink-0 items-center justify-between gap-4 md:flex-col md:items-end md:justify-start">
                       <p className="text-sm text-zinc-600">{project.year}</p>
-                      <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.08] text-zinc-600 transition-all duration-200 group-hover:border-white/25 group-hover:text-white">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-2xl border-2 border-white/5 text-zinc-500 transition-all duration-200 group-hover/card:border-white/40 group-hover/card:text-white">
                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                           <path
                             d="M2.5 11.5L11.5 2.5M11.5 2.5H5M11.5 2.5V9"
@@ -111,7 +111,7 @@ export default function Work() {
                   <div className="mt-6 flex flex-wrap gap-3">
                     <Link
                       href={`/projects/${project.slug}`}
-                      className="inline-flex items-center rounded-full border border-white/[0.12] bg-white/[0.04] px-4 py-2 text-sm font-medium text-white transition hover:border-white/[0.22] hover:bg-white/[0.08]"
+                      className={`${glassCta} rounded-2xl px-4 py-2 text-sm`}
                     >
                       Read case study
                     </Link>
@@ -119,7 +119,7 @@ export default function Work() {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-zinc-400 transition hover:bg-white/[0.06] hover:text-white"
+                      className={`${glassGhost} rounded-2xl px-4 py-2 text-sm`}
                     >
                       View live site
                     </a>

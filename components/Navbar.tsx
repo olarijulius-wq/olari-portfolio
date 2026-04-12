@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import BrandLogo from "@/components/BrandLogo";
+import { glassCta, glassGhost } from "@/app/lib/glass";
 import { homeSectionLinks, primaryNavigation } from "@/app/lib/navigation";
 
 export default function Navbar() {
@@ -74,13 +75,13 @@ export default function Navbar() {
             <Link
               href="/#work"
               onClick={(event) => handleHashLink(event, "/#work")}
-              className="inline-flex h-10 items-center rounded-lg px-4 text-sm font-semibold text-zinc-400 transition-all duration-200 hover:bg-white/[0.06] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/25 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              className={`${glassGhost} h-10 rounded-2xl px-4 text-sm`}
             >
               View work
             </Link>
             <Link
               href="/contact"
-              className="relative inline-flex h-10 items-center justify-center rounded-2xl border-[2px] border-white/5 bg-[linear-gradient(104deg,rgba(253,253,253,0.05)_5%,rgba(240,240,228,0.1)_100%)] px-4 text-sm font-semibold text-white backdrop-blur-[25px] transition-all duration-200 hover:border-white hover:bg-white hover:text-black hover:shadow-[0_0_32px_rgba(255,255,255,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              className={`${glassCta} relative h-10 px-4 text-sm rounded-2xl`}
               aria-label="Get in touch"
             >
               Get in touch
@@ -157,7 +158,7 @@ export default function Navbar() {
                 <Link
                   href="/contact"
                   onClick={() => setOpen(false)}
-                  className="block w-full rounded-2xl border-[2px] border-white/5 bg-[linear-gradient(104deg,rgba(253,253,253,0.05)_5%,rgba(240,240,228,0.1)_100%)] py-2.5 text-center text-sm font-semibold text-white transition-all duration-200 hover:bg-white hover:text-black hover:shadow-[0_0_28px_rgba(255,255,255,0.12)]"
+                  className={`${glassCta} w-full justify-center rounded-2xl py-2.5 text-center text-sm`}
                 >
                   Get in touch
                 </Link>

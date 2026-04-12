@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { glassCta, glassField, glassPanelInteractive } from "@/app/lib/glass";
 
 type FormState = {
   name: string;
@@ -62,7 +63,10 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6 md:p-8">
+    <form
+      onSubmit={onSubmit}
+      className={`rounded-3xl p-6 md:p-8 ${glassPanelInteractive}`}
+    >
       <div className="grid gap-5">
         <label className="grid gap-2 text-sm text-zinc-300">
           <span>Name</span>
@@ -72,7 +76,7 @@ export default function ContactForm() {
             autoComplete="name"
             value={form.name}
             onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
-            className="rounded-2xl border border-white/[0.08] bg-black px-4 py-3 text-white placeholder:text-zinc-600"
+            className={glassField}
             placeholder="Your name"
             required
           />
@@ -85,7 +89,7 @@ export default function ContactForm() {
             autoComplete="email"
             value={form.email}
             onChange={(event) => setForm((current) => ({ ...current, email: event.target.value }))}
-            className="rounded-2xl border border-white/[0.08] bg-black px-4 py-3 text-white placeholder:text-zinc-600"
+            className={glassField}
             placeholder="you@company.com"
             required
           />
@@ -97,7 +101,7 @@ export default function ContactForm() {
             rows={7}
             value={form.message}
             onChange={(event) => setForm((current) => ({ ...current, message: event.target.value }))}
-            className="rounded-2xl border border-white/[0.08] bg-black px-4 py-3 text-white placeholder:text-zinc-600"
+            className={glassField}
             placeholder="Project scope, timeline, goals, or what you’re stuck on."
             required
           />
@@ -107,7 +111,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={status === "loading"}
-          className="inline-flex h-11 items-center justify-center rounded-full border border-white/[0.12] bg-white/[0.06] px-6 text-sm font-semibold text-white transition hover:border-white/[0.22] hover:bg-white hover:text-black disabled:cursor-not-allowed disabled:opacity-60"
+          className={`${glassCta} h-11 rounded-2xl px-6 text-sm disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:border-white/5 disabled:hover:bg-[linear-gradient(104deg,rgba(253,253,253,0.05)_5%,rgba(240,240,228,0.1)_100%)] disabled:hover:text-white disabled:hover:shadow-none`}
         >
           {status === "loading" ? "Sending..." : "Send message"}
         </button>

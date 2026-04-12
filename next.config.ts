@@ -5,6 +5,14 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: __dirname,
   },
+  async redirects() {
+    return [
+      { source: "/notes", destination: "/", permanent: true },
+      { source: "/notes/:path*", destination: "/", permanent: true },
+      { source: "/uses", destination: "/", permanent: true },
+      { source: "/now", destination: "/", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

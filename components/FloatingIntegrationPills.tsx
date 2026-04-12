@@ -83,7 +83,7 @@ function Pill({ name, i }: { name: (typeof pillNames)[number]; i: number }) {
         initial={reduce ? false : { opacity: 0, scale: 0.92 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, delay: 0.2 + i * 0.07, ease: [0.16, 1, 0.3, 1] }}
-        className="flex items-center gap-2 pl-2.5 pr-3 py-1.5 rounded-full border border-white/[0.1] bg-white/[0.04] backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-all duration-300 hover:border-white/25 hover:bg-white/[0.08] hover:shadow-[0_12px_40px_rgba(255,255,255,0.06)] hover:scale-105 cursor-default"
+        className="flex cursor-default items-center gap-2 rounded-2xl border-2 border-white/5 bg-[linear-gradient(104deg,rgba(253,253,253,0.05)_5%,rgba(240,240,228,0.1)_100%)] py-1.5 pl-2.5 pr-3 shadow-[0_8px_32px_rgba(0,0,0,0.35)] backdrop-blur-[25px] transition-all duration-200 hover:scale-105 hover:border-white hover:shadow-[0_0_32px_rgba(255,255,255,0.12)]"
       >
         <span className="flex items-center justify-center w-7 h-7 rounded-full bg-black/40 border border-white/[0.06]">
           <PillIcon name={name} />

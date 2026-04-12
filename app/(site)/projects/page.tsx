@@ -3,6 +3,7 @@ import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
 import SpotlightSurface from "@/components/SpotlightSurface";
+import { glassCta, glassGhost, glassPanelInteractive } from "@/app/lib/glass";
 import { createPageMetadata } from "@/app/lib/metadata";
 import { projects } from "@/app/lib/projects";
 import { personName } from "@/app/lib/site";
@@ -18,7 +19,7 @@ export default function ProjectsPage() {
     <div>
       <PageHeader
         eyebrow="Projects"
-        title={`Selected projects by ${personName}`}
+        title="Selected projects"
         description="Case studies for products and websites I’ve shipped — constraint, approach, stack, and the outcome each build was meant to create."
       />
       <section className="mx-auto max-w-7xl px-6 py-16 md:px-10 md:py-20">
@@ -28,7 +29,7 @@ export default function ProjectsPage() {
               <SpotlightSurface
                 glowRadius={580}
                 glowStrength={0.11}
-                className="rounded-3xl border border-white/[0.08] bg-white/[0.02]"
+                className={`rounded-3xl ${glassPanelInteractive}`}
               >
                 <article className="grid gap-6 p-8 md:grid-cols-[1.35fr_0.65fr] md:p-10">
                   <div>
@@ -66,7 +67,7 @@ export default function ProjectsPage() {
                     <div className="flex flex-wrap gap-3">
                       <Link
                         href={`/projects/${project.slug}`}
-                        className="inline-flex items-center rounded-full border border-white/[0.12] bg-white/[0.05] px-4 py-2 text-sm font-medium text-white transition hover:border-white/[0.22] hover:bg-white/[0.09]"
+                        className={`${glassCta} rounded-2xl px-4 py-2 text-sm`}
                       >
                         Read case study
                       </Link>
@@ -74,7 +75,7 @@ export default function ProjectsPage() {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-zinc-400 transition hover:bg-white/[0.06] hover:text-white"
+                        className={`${glassGhost} rounded-2xl px-4 py-2 text-sm`}
                       >
                         Live site
                       </a>

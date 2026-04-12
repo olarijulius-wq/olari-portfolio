@@ -3,7 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { useRef } from "react";
-import { personAlternateName, personName } from "@/app/lib/site";
+import { glassGhost, glassPanelInteractive } from "@/app/lib/glass";
 
 const interests = [
   { label: "11 years tennis" },
@@ -29,7 +29,7 @@ export default function About() {
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.4 }}
           className="text-[11px] text-zinc-600 uppercase tracking-[0.2em] font-medium mb-14"
         >
           About
@@ -41,7 +41,7 @@ export default function About() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.5, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
           >
             <h2 className="font-display text-3xl md:text-4xl font-bold text-white leading-[1.15] tracking-tight mb-8">
               What I build,
@@ -51,20 +51,16 @@ export default function About() {
 
             <div className="space-y-5 text-zinc-400 text-[1.0625rem] leading-[1.75]">
               <p>
-                I&apos;m {personName} ({personAlternateName}) — a full-stack developer working from
-                Estonia. I ship web apps and MVPs with AI-assisted development: what often takes
-                teams months, I aim to deliver in weeks without cutting the parts users feel.
+                Estonian full-stack developer shipping web apps and MVPs with AI-assisted workflows.
+                What often takes teams months, I aim to deliver in weeks — without cutting what users
+                actually feel in the product.
               </p>
               <p>
                 From idea to deployed product — auth, payments, database, deploy. No handoffs, no
-                gaps. If you want the longer version of how I work,{" "}
-                <Link
-                  href="/about"
-                  className="text-zinc-300 underline decoration-white/15 underline-offset-[5px] transition hover:text-white"
-                >
-                  read more about {personName}
+                gaps.{" "}
+                <Link href="/about" className={`${glassGhost} ml-1 inline-flex rounded-2xl px-3 py-1.5 text-sm`}>
+                  Full profile
                 </Link>
-                .
               </p>
               <p className="text-zinc-600">
                 I think in systems — whether it&apos;s music theory, court geometry, or database
@@ -77,7 +73,7 @@ export default function About() {
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.5, delay: 0.14, ease: [0.16, 1, 0.3, 1] }}
             className="space-y-10"
           >
             {/* Stats */}
@@ -89,7 +85,7 @@ export default function About() {
               ].map((s) => (
                 <div
                   key={s.value}
-                  className="group/stat rounded-xl border border-transparent px-3 py-3 -mx-1 sm:mx-0 transition-all duration-300 hover:border-white/[0.1] hover:bg-white/[0.04] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] active:scale-[0.98]"
+                  className={`group/stat rounded-2xl px-3 py-3 -mx-1 sm:mx-0 ${glassPanelInteractive}`}
                 >
                   <p className="text-2xl font-bold text-white mb-1">{s.value}</p>
                   <p className="text-xs text-zinc-600 leading-snug transition-colors group-hover/stat:text-zinc-500">
@@ -111,7 +107,7 @@ export default function About() {
                 {interests.map((item) => (
                   <li
                     key={item.label}
-                    className="group/interest flex items-center gap-3 text-sm text-zinc-500 rounded-lg px-2 -mx-2 py-2 transition-all duration-200 hover:text-zinc-300 hover:bg-white/[0.04] hover:border hover:border-white/[0.06] border border-transparent cursor-default"
+                    className="group/interest flex cursor-default items-center gap-3 rounded-2xl border-2 border-white/5 bg-[linear-gradient(104deg,rgba(253,253,253,0.03)_5%,rgba(240,240,228,0.05)_100%)] px-3 py-2 text-sm text-zinc-500 backdrop-blur-[25px] transition-all duration-200 hover:border-white/25 hover:text-zinc-300 hover:shadow-[0_0_24px_rgba(255,255,255,0.08)] active:scale-[0.99]"
                   >
                     <span
                       className="w-1 h-1 rounded-full bg-zinc-700 shrink-0 transition-colors group-hover/interest:bg-zinc-400"

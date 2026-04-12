@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion
 import Link from "next/link";
 import { useRef } from "react";
 import FloatingIntegrationPills from "@/components/FloatingIntegrationPills";
+import { glassCta, glassGhost } from "@/app/lib/glass";
 import { personAlternateName, personName } from "@/app/lib/site";
 
 const go = (href: string) =>
@@ -132,7 +133,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.02] mb-8 transition-all duration-300 hover:border-white/[0.14] hover:bg-white/[0.05] hover:shadow-[0_0_32px_rgba(255,255,255,0.05)]"
+            className={`mb-8 inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-medium ${glassGhost}`}
           >
             <span
               className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"
@@ -169,24 +170,21 @@ export default function Hero() {
           <motion.p
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.45, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
             className="text-lg text-zinc-400 leading-relaxed mb-4 max-w-[480px]"
           >
             I&apos;m {personName}, an Estonian full-stack developer. I build SaaS products, booking
-            systems, and MVPs end to end. Some people know me as {personAlternateName}; this site is
-            my main portfolio and contact point.
+            systems, and MVPs end to end — this site is my portfolio and the best place to reach me.
+            ({personAlternateName} works too.)
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.4, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
             className="mb-10 max-w-[480px]"
           >
-            <Link
-              href="/about"
-              className="text-sm font-medium text-zinc-400 underline decoration-white/20 underline-offset-4 transition hover:text-white"
-            >
-              More about Olari Julius Valdma
+            <Link href="/about" className={`${glassGhost} rounded-2xl px-4 py-2 text-sm`}>
+              Full profile &amp; background
             </Link>
           </motion.p>
 
@@ -197,18 +195,18 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.38 }}
             className="flex flex-wrap items-center gap-3"
           >
-            {/* Primary — frosted glass pill */}
             <button
+              type="button"
               onClick={() => go("#work")}
-              className="inline-flex items-center justify-center rounded-full px-6 h-11 text-sm font-semibold text-white border border-white/[0.12] backdrop-blur-[25px] bg-[linear-gradient(135deg,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0.04)_100%)] hover:bg-white hover:text-black hover:border-white hover:shadow-[0_0_40px_rgba(255,255,255,0.12)] active:scale-[0.98] transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/35 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              className={`${glassCta} h-11 rounded-2xl px-6 text-sm cursor-pointer`}
             >
               View my work
             </button>
 
-            {/* Secondary — ghost */}
             <button
+              type="button"
               onClick={() => go("#contact")}
-              className="h-11 px-4 rounded-full text-sm font-medium text-zinc-500 hover:text-white hover:bg-white/[0.06] active:scale-[0.98] transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/25 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              className={`${glassGhost} h-11 rounded-2xl px-5 text-sm cursor-pointer`}
             >
               Get in touch →
             </button>

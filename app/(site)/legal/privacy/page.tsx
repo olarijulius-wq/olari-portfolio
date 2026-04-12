@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
 import Prose from "@/components/Prose";
 import Reveal from "@/components/Reveal";
+import { glassPanelInteractive } from "@/app/lib/glass";
 import { createPageMetadata } from "@/app/lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
@@ -20,7 +21,7 @@ export default function PrivacyPage() {
       />
       <section className="mx-auto max-w-4xl px-6 py-16 md:px-10 md:py-20">
         <Reveal>
-          <div className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-8 md:p-10">
+          <div className={`rounded-3xl p-8 md:p-10 ${glassPanelInteractive}`}>
             <Prose>
               <h2>Contact form data</h2>
               <p>

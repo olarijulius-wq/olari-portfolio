@@ -51,7 +51,7 @@ export default function SpotlightSurface({
     >
       {!reduceMotion && (
         <div
-          className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300"
+          className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-200"
           style={{
             opacity: active ? 1 : 0,
             background: `radial-gradient(${glowRadius}px circle at ${pos.x}px ${pos.y}px, rgba(255,255,255,${glowStrength}), transparent 42%)`,
