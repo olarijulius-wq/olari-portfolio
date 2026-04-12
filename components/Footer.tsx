@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { footerNavigation } from "@/app/lib/navigation";
-import { brandName, contactEmail } from "@/app/lib/site";
+import { brandName, contactEmail, studioWordmark } from "@/app/lib/site";
 
 export default function Footer() {
   return (
@@ -11,6 +11,7 @@ export default function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col gap-6 px-6 md:px-10 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <p className="font-display text-xl text-white">{brandName}</p>
+          <p className="mt-1 text-xs text-zinc-600">{studioWordmark}</p>
           <p className="mt-2 max-w-xl text-sm leading-7 text-zinc-500">
             Product-focused full-stack development for SaaS, booking flows, and fast MVP launches.
           </p>

@@ -5,6 +5,7 @@ import Prose from "@/components/Prose";
 import Reveal from "@/components/Reveal";
 import { createPageMetadata } from "@/app/lib/metadata";
 import { getNoteBySlug, notes } from "@/app/lib/notes";
+import { personName } from "@/app/lib/site";
 
 type NotePageProps = {
   params: Promise<{ slug: string }>;
@@ -31,7 +32,7 @@ export async function generateMetadata({ params }: NotePageProps): Promise<Metad
 
   return createPageMetadata({
     title: note.title,
-    description: note.description,
+    description: `${note.description} By ${personName}.`,
     path: `/notes/${note.slug}`,
     type: "article",
   });

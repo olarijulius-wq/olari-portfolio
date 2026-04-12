@@ -1,7 +1,9 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
+import Link from "next/link";
 import { useRef } from "react";
+import { personAlternateName, personName } from "@/app/lib/site";
 
 const interests = [
   { label: "11 years tennis" },
@@ -42,24 +44,31 @@ export default function About() {
             transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <h2 className="font-display text-3xl md:text-4xl font-bold text-white leading-[1.15] tracking-tight mb-8">
-              Building the future,
+              What I build,
               <br />
-              <span className="text-zinc-500">one sprint at a time.</span>
+              <span className="text-zinc-500">based in Estonia.</span>
             </h2>
 
             <div className="space-y-5 text-zinc-400 text-[1.0625rem] leading-[1.75]">
               <p>
-                I build web apps and MVPs using AI-assisted development. What
-                takes others months takes me weeks.
+                I&apos;m {personName} ({personAlternateName}) — a full-stack developer working from
+                Estonia. I ship web apps and MVPs with AI-assisted development: what often takes
+                teams months, I aim to deliver in weeks without cutting the parts users feel.
               </p>
               <p>
-                From idea to deployed product — I handle the full stack. Auth,
-                payments, database, deploy. No handoffs, no gaps.
+                From idea to deployed product — auth, payments, database, deploy. No handoffs, no
+                gaps. If you want the longer version of how I work,{" "}
+                <Link
+                  href="/about"
+                  className="text-zinc-300 underline decoration-white/15 underline-offset-[5px] transition hover:text-white"
+                >
+                  read more about {personName}
+                </Link>
+                .
               </p>
               <p className="text-zinc-600">
-                I think in systems — whether it&apos;s music theory, court
-                geometry, or database architecture, the underlying logic is
-                always the same.
+                I think in systems — whether it&apos;s music theory, court geometry, or database
+                architecture, the underlying logic is always the same.
               </p>
             </div>
           </motion.div>

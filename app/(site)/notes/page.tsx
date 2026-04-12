@@ -4,10 +4,11 @@ import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
 import { createPageMetadata } from "@/app/lib/metadata";
 import { notes } from "@/app/lib/notes";
+import { personName } from "@/app/lib/site";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Notes",
-  description: "Short writing on product work, shipping speed, and building software with better constraints.",
+  description: `Notes by ${personName} on product work, shipping speed, Next.js, and building software with better constraints.`,
   path: "/notes",
 });
 
@@ -17,7 +18,7 @@ export default function NotesPage() {
       <PageHeader
         eyebrow="Notes"
         title="Working notes on shipping products."
-        description="Short pieces on scope, delivery, AI-assisted engineering, and the practical side of making software feel finished."
+        description={`Short pieces by ${personName} on scope, delivery, AI-assisted engineering, and making software feel finished.`}
       />
       <section className="mx-auto max-w-5xl px-6 py-16 md:px-10 md:py-20">
         <div className="grid gap-5">

@@ -28,10 +28,18 @@ const resolveSiteUrl = () => {
 export const siteUrl = resolveSiteUrl();
 
 export const personName = "Olari Julius Valdma";
-export const brandName = "OJ Studio";
+/** Shorter name variant for natural copy and structured data. */
+export const personAlternateName = "Olari Valdma";
+/** Primary site / entity label for metadata, OG, manifest, and footer. */
+export const brandName = personName;
+/** Visual wordmark in the nav mark; keeps “OJ Studio” as a studio label without replacing the person entity. */
+export const studioWordmark = "OJ Studio";
+export const manifestShortName = "Olari Valdma";
+export const personGraphId = `${siteUrl}#person`;
+export const websiteGraphId = `${siteUrl}#website`;
 export const siteTitle = `${personName} | Full-Stack Developer in Estonia`;
 export const siteDescription =
-  "Portfolio website of Olari Julius Valdma, an Estonian full-stack developer building SaaS products, booking platforms, MVPs, and modern web apps with Next.js, AI workflows, and product-focused execution.";
+  "Olari Julius Valdma is an Estonian full-stack developer building SaaS products, MVPs, booking systems, and modern web apps with Next.js and AI-assisted workflows.";
 
 export const socialLinks = [
   "https://github.com/olarijulius-wq",

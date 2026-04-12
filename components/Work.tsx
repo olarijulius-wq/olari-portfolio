@@ -5,6 +5,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import SpotlightSurface from "@/components/SpotlightSurface";
 import { projects } from "@/app/lib/projects";
+import { personName } from "@/app/lib/site";
 
 export default function Work() {
   const ref = useRef<HTMLElement>(null);
@@ -28,7 +29,7 @@ export default function Work() {
             Work
           </p>
           <h2 className="font-display text-4xl font-bold tracking-tight text-white md:text-5xl">
-            Selected projects
+            Selected projects by {personName}
           </h2>
         </motion.div>
 

@@ -9,11 +9,14 @@ import Footer from "@/components/Footer";
 import InteractiveGradientBackground from "@/components/InteractiveGradientBackground";
 import {
   contactEmail,
+  personAlternateName,
+  personGraphId,
   personName,
   siteDescription,
   siteTitle,
   siteUrl,
   socialLinks,
+  websiteGraphId,
 } from "@/app/lib/site";
 
 const jsonLd = {
@@ -21,14 +24,25 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Person",
-      "@id": `${siteUrl}#person`,
+      "@id": personGraphId,
       name: personName,
+      givenName: "Olari",
+      additionalName: "Julius",
+      familyName: "Valdma",
+      alternateName: personAlternateName,
       url: siteUrl,
       image: `${siteUrl}/icon`,
       jobTitle: "Full-Stack Developer",
       description: siteDescription,
       email: contactEmail,
-      nationality: "Estonian",
+      nationality: {
+        "@type": "Country",
+        name: "Estonia",
+      },
+      homeLocation: {
+        "@type": "Country",
+        name: "Estonia",
+      },
       sameAs: socialLinks,
       knowsAbout: [
         "Full-stack development",
@@ -43,13 +57,13 @@ const jsonLd = {
     },
     {
       "@type": "WebSite",
-      "@id": `${siteUrl}#website`,
+      "@id": websiteGraphId,
       url: siteUrl,
       name: siteTitle,
       description: siteDescription,
       inLanguage: "en",
       about: {
-        "@id": `${siteUrl}#person`,
+        "@id": personGraphId,
       },
     },
     {
@@ -59,10 +73,10 @@ const jsonLd = {
       name: siteTitle,
       description: siteDescription,
       isPartOf: {
-        "@id": `${siteUrl}#website`,
+        "@id": websiteGraphId,
       },
       about: {
-        "@id": `${siteUrl}#person`,
+        "@id": personGraphId,
       },
       primaryImageOfPage: {
         "@type": "ImageObject",

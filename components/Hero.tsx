@@ -1,8 +1,10 @@
 "use client";
 
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import Link from "next/link";
 import { useRef } from "react";
 import FloatingIntegrationPills from "@/components/FloatingIntegrationPills";
+import { personAlternateName, personName } from "@/app/lib/site";
 
 const go = (href: string) =>
   document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
@@ -141,33 +143,51 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          {/* Headline */}
+          {/* Headline — full name for person-entity clarity */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display font-bold leading-[1.02] tracking-tight mb-6"
-            style={{ fontSize: "clamp(3.5rem, 8vw, 7rem)" }}
+            className="font-display font-bold leading-[1.05] tracking-tight mb-4"
+            style={{ fontSize: "clamp(2.25rem, 5.5vw, 3.75rem)" }}
           >
             <span className="bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent">
-              Full-stack
-            </span>
-            <br />
-            <span className="bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent">
-              developer.
+              {personName}
             </span>
           </motion.h1>
 
-          {/* Tagline */}
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
+            className="text-xl md:text-2xl text-white/90 font-medium tracking-tight mb-6 max-w-[480px] leading-snug"
+          >
+            Full-stack developer in Estonia building SaaS products, MVPs, and modern web apps.
+          </motion.p>
+
+          {/* Intro */}
           <motion.p
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="text-lg text-zinc-400 leading-relaxed mb-10 max-w-[400px]"
+            className="text-lg text-zinc-400 leading-relaxed mb-4 max-w-[480px]"
           >
-            I build products that work.{" "}
-            <span className="text-white font-medium">Fast.</span>{" "}
-            SaaS apps, booking platforms, and MVPs — from idea to shipped.
+            I&apos;m {personName}, an Estonian full-stack developer. I build SaaS products, booking
+            systems, and MVPs end to end. Some people know me as {personAlternateName}; this site is
+            my main portfolio and contact point.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-10 max-w-[480px]"
+          >
+            <Link
+              href="/about"
+              className="text-sm font-medium text-zinc-400 underline decoration-white/20 underline-offset-4 transition hover:text-white"
+            >
+              More about Olari Julius Valdma
+            </Link>
           </motion.p>
 
           {/* CTAs */}

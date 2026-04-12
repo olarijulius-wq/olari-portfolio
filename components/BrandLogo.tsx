@@ -2,6 +2,7 @@
 
 import { useId } from "react";
 import { BrandMark } from "@/components/brand-mark";
+import { studioWordmark } from "@/app/lib/site";
 
 type BrandLogoProps = {
   className?: string;
@@ -22,7 +23,7 @@ export default function BrandLogo({
       <BrandMark className="shrink-0" gradientId={`oj-mark-g-${gid}`} />
       {showWordmark && (
         <span className="text-sm font-semibold text-white tracking-tight leading-none">
-          OJ Studio
+          {studioWordmark}
         </span>
       )}
     </span>

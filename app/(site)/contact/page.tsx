@@ -3,11 +3,11 @@ import ContactForm from "@/components/ContactForm";
 import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
 import { createPageMetadata } from "@/app/lib/metadata";
-import { calendarUrl, contactEmail } from "@/app/lib/site";
+import { calendarUrl, contactEmail, personName } from "@/app/lib/site";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Contact",
-  description: "Send a project inquiry, email directly, or book a call if you want to discuss scope and timeline.",
+  description: `Contact ${personName} for SaaS, MVP, or booking-platform work — form, email, or a scheduled call.`,
   path: "/contact",
 });
 

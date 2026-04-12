@@ -3,6 +3,7 @@ import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
 import { createPageMetadata } from "@/app/lib/metadata";
+import { personName } from "@/app/lib/site";
 
 const tiers = [
   {
@@ -30,7 +31,7 @@ const tiers = [
 
 export const metadata: Metadata = createPageMetadata({
   title: "Services",
-  description: "Delivery tiers for MVP builds, marketing sites, and product integrations.",
+  description: `${personName}: Next.js development, SaaS MVP delivery, booking platform builds, marketing sites, and integrations — clear scopes and timelines.`,
   path: "/services",
 });
 
@@ -39,8 +40,8 @@ export default function ServicesPage() {
     <div>
       <PageHeader
         eyebrow="Services"
-        title="Clear scopes for the work I actually like shipping."
-        description="Three service lanes, each with a tighter boundary around timeline, output, and what is intentionally not included."
+        title="Next.js, SaaS MVPs, booking flows — scoped the way I ship."
+        description={`Three delivery lanes from ${personName}, each with explicit timeline, output, and what stays out of scope.`}
       />
       <section className="mx-auto max-w-7xl px-6 py-16 md:px-10 md:py-20">
         <div className="grid gap-5 lg:grid-cols-3">

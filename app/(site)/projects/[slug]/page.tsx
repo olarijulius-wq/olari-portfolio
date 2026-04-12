@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
 import { createPageMetadata } from "@/app/lib/metadata";
 import { getProjectBySlug, projects } from "@/app/lib/projects";
+import { personName } from "@/app/lib/site";
 
 type ProjectPageProps = {
   params: Promise<{ slug: string }>;
@@ -30,7 +32,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 
   return createPageMetadata({
     title: project.title,
-    description: project.tagline,
+    description: `${project.tagline} Case study by ${personName}.`,
     path: `/projects/${project.slug}`,
   });
 }
@@ -94,6 +96,21 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         </div>
 
         <Reveal className="mt-8">
+          <p className="mb-8 text-sm text-zinc-500">
+            Built by{" "}
+            <Link href="/about" className="text-zinc-300 underline decoration-white/15 underline-offset-4 hover:text-white">
+              {personName}
+            </Link>
+            . More on{" "}
+            <Link href="/projects" className="text-zinc-300 underline decoration-white/15 underline-offset-4 hover:text-white">
+              other projects
+            </Link>{" "}
+            and{" "}
+            <Link href="/services" className="text-zinc-300 underline decoration-white/15 underline-offset-4 hover:text-white">
+              services
+            </Link>
+            .
+          </p>
           <div className="mb-6">
             <p className="text-[11px] uppercase tracking-[0.2em] text-zinc-600">Gallery</p>
             <p className="mt-2 text-sm text-zinc-500">Selected interface views from the build.</p>

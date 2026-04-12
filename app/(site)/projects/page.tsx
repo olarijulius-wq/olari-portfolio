@@ -5,10 +5,11 @@ import Reveal from "@/components/Reveal";
 import SpotlightSurface from "@/components/SpotlightSurface";
 import { createPageMetadata } from "@/app/lib/metadata";
 import { projects } from "@/app/lib/projects";
+import { personName } from "@/app/lib/site";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Projects",
-  description: "Selected case studies covering SaaS products, booking flows, and product-focused web builds.",
+  description: `Selected case studies by ${personName}: SaaS products, booking platforms, Next.js builds, and product-focused web work.`,
   path: "/projects",
 });
 
@@ -17,8 +18,8 @@ export default function ProjectsPage() {
     <div>
       <PageHeader
         eyebrow="Projects"
-        title="Selected builds with the thinking behind them."
-        description="Case studies for the products and websites I’ve shipped, including the constraint, approach, stack, and the result each build was designed to create."
+        title={`Selected projects by ${personName}`}
+        description="Case studies for products and websites I’ve shipped — constraint, approach, stack, and the outcome each build was meant to create."
       />
       <section className="mx-auto max-w-7xl px-6 py-16 md:px-10 md:py-20">
         <div className="grid gap-5">
