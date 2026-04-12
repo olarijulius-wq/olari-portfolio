@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import BrandLogo from "@/components/BrandLogo";
 
 const links = [
   { label: "Work", href: "#work" },
@@ -41,10 +42,10 @@ export default function Navbar() {
           {/* Logo */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="text-sm font-semibold text-white tracking-tight cursor-pointer select-none"
+            className="cursor-pointer select-none text-left"
             aria-label="Olari Julius — scroll to top"
           >
-            Olari Julius
+            <BrandLogo showWordmark />
           </button>
 
           {/* Centre nav links */}
@@ -82,9 +83,10 @@ export default function Navbar() {
         <div className="flex h-14 md:hidden items-center justify-between">
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="text-sm font-semibold text-white cursor-pointer select-none"
+            className="cursor-pointer select-none"
+            aria-label="Olari Julius — scroll to top"
           >
-            Olari Julius
+            <BrandLogo />
           </button>
           <button
             onClick={() => setOpen(!open)}

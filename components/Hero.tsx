@@ -1,6 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { useRef } from "react";
+import FloatingIntegrationPills from "@/components/FloatingIntegrationPills";
 
 const go = (href: string) =>
   document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
@@ -89,8 +91,18 @@ function AbstractSphere() {
 // ─── Hero ──────────────────────────────────────────────────────────────────────
 
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const yText = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [0, 48]);
+  const opacityBg = useTransform(scrollYProgress, [0, 0.6], [1, 0.35]);
+
   return (
     <section
+      ref={sectionRef}
       className="relative flex items-center min-h-[calc(100vh-58px)] w-full overflow-hidden"
       aria-label="Hero"
     >
@@ -99,19 +111,20 @@ export default function Hero() {
         className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"
         aria-hidden="true"
       />
-      <div
+      <motion.div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] pointer-events-none"
         aria-hidden="true"
         style={{
+          opacity: opacityBg,
           background:
-            "radial-gradient(ellipse 55% 45% at 50% 0%, rgba(255,255,255,0.045) 0%, transparent 70%)",
+            "radial-gradient(ellipse 55% 45% at 50% 0%, rgba(255,255,255,0.055) 0%, transparent 70%)",
         }}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center py-20 lg:py-24">
 
         {/* ── Left — text ────────────────────────────────────────────────── */}
-        <div>
+        <motion.div style={{ y: yText }}>
           {/* Available badge */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -180,10 +193,15 @@ export default function Hero() {
               Get in touch →
             </button>
           </motion.div>
-        </div>
+        </motion.div>
 
-        {/* ── Right — CSS sphere ──────────────────────────────────────────── */}
-        <AbstractSphere />
+        {/* ── Right — floating integrations + sphere ─────────────────────── */}
+        <div className="relative w-full min-h-[min(72vw,480px)] lg:min-h-[520px]">
+          <FloatingIntegrationPills />
+          <div className="relative z-10">
+            <AbstractSphere />
+          </div>
+        </div>
       </div>
     </section>
   );

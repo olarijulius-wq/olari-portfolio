@@ -21,6 +21,11 @@ export const metadata: Metadata = {
   description:
     "Full-Stack Developer from Estonia. I build products that work. Fast. SaaS apps, booking systems, MVPs shipped with Next.js, Supabase, and AI.",
   authors: [{ name: "Olari Julius" }],
+  icons: {
+    icon: [{ url: "/icon", type: "image/png", sizes: "512x512" }],
+    shortcut: [{ url: "/icon", type: "image/png", sizes: "512x512" }],
+    apple: [{ url: "/apple-icon", type: "image/png", sizes: "180x180" }],
+  },
   openGraph: {
     title: "Olari Julius — Full-Stack Developer",
     description: "I build products that work. Fast.",
