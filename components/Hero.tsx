@@ -141,15 +141,6 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.05 }}
-            className="text-[11px] text-zinc-600 uppercase tracking-[0.24em] font-medium mb-5"
-          >
-            Olari Julius Valdma
-          </motion.p>
-
           {/* Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
