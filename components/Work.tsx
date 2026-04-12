@@ -1,67 +1,41 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Link from "next/link";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { useInView } from "framer-motion";
 import SpotlightSurface from "@/components/SpotlightSurface";
-
-const projects = [
-  {
-    id: "lateless",
-    title: "Lateless",
-    description:
-      "Invoice SaaS with Stripe payments, automated reminders, and analytics. Solo-built and launched on Product Hunt.",
-    tags: ["SaaS", "Stripe", "Supabase", "Next.js"],
-    link: "https://lateless.org",
-    year: "2026",
-    status: "Live",
-  },
-  {
-    id: "looduskeskus",
-    title: "Looduskeskus",
-    description:
-      "Booking website for a nature accommodation business. Amenities pages, contact form, and email notifications.",
-    tags: ["Booking", "Next.js", "Tailwind", "Resend"],
-    link: "https://naturestonia.com",
-    year: "2026",
-    status: "Live",
-  },
-];
+import { projects } from "@/app/lib/projects";
 
 export default function Work() {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section
-      id="work"
-      ref={ref}
-      className="relative py-24 md:py-32 w-full"
-      aria-label="Work"
-    >
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" aria-hidden="true" />
+    <section id="work" ref={ref} className="relative w-full py-24 md:py-32" aria-label="Work">
+      <div
+        className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent"
+        aria-hidden="true"
+      />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
-        {/* Header */}
+      <div className="mx-auto max-w-7xl px-6 md:px-10">
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="mb-14"
         >
-          <p className="text-[11px] text-zinc-600 uppercase tracking-[0.2em] font-medium mb-3">
+          <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.2em] text-zinc-600">
             Work
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-white tracking-tight">
+          <h2 className="font-display text-4xl font-bold tracking-tight text-white md:text-5xl">
             Selected projects
           </h2>
         </motion.div>
 
-        {/* Full-width stacked cards */}
         <div className="space-y-4">
           {projects.map((project, i) => (
             <motion.article
-              key={project.id}
+              key={project.slug}
               initial={{ opacity: 0, y: 24 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{
@@ -74,15 +48,14 @@ export default function Work() {
               <SpotlightSurface
                 glowRadius={640}
                 glowStrength={0.12}
-                className="rounded-2xl border border-white/[0.08] bg-white/[0.02] transition-all duration-300 hover:border-white/[0.18] hover:shadow-[0_0_60px_rgba(255,255,255,0.04)] active:scale-[0.998]"
+                className="rounded-2xl border border-white/[0.08] bg-white/[0.02] transition-all duration-300 hover:border-white/[0.18] hover:shadow-[0_0_60px_rgba(255,255,255,0.04)]"
               >
-                {/* Glow at top on hover */}
                 <div
-                  className="absolute top-0 left-0 right-0 z-20 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  className="absolute left-0 right-0 top-0 z-20 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                   aria-hidden="true"
                 />
                 <div
-                  className="absolute top-0 left-1/2 z-20 w-72 h-24 -translate-x-1/2 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  className="absolute left-1/2 top-0 z-20 h-24 w-72 -translate-x-1/2 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                   style={{
                     background:
                       "radial-gradient(ellipse at top, rgba(255,255,255,0.06) 0%, transparent 72%)",
@@ -90,56 +63,79 @@ export default function Work() {
                   aria-hidden="true"
                 />
 
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block p-8 md:p-10 focus-visible:outline-none"
-                  aria-label={`View ${project.title}`}
-                >
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
-                  {/* Left — title + description */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-4 mb-4">
-                      <h3 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight leading-none">
-                        {project.title}
-                      </h3>
-                      <span className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 text-xs text-green-400 border border-green-400/20 bg-green-400/[0.06] rounded-full shrink-0">
-                        <span className="w-1 h-1 rounded-full bg-green-400" aria-hidden="true" />
-                        {project.status}
+                <div className="p-8 md:p-10">
+                  <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+                    <div className="min-w-0 flex-1">
+                      <div className="mb-4 flex items-center gap-4">
+                        <h3 className="font-display text-3xl font-bold leading-none tracking-tight text-white md:text-4xl">
+                          {project.title}
+                        </h3>
+                        <span className="hidden shrink-0 items-center gap-1.5 rounded-full border border-green-400/20 bg-green-400/[0.06] px-2.5 py-1 text-xs text-green-400 md:inline-flex">
+                          <span className="h-1 w-1 rounded-full bg-green-400" aria-hidden="true" />
+                          {project.status}
+                        </span>
+                      </div>
+                      <p className="max-w-2xl text-base leading-relaxed text-zinc-400">
+                        {project.summary}
+                      </p>
+                    </div>
+
+                    <div className="flex shrink-0 items-center justify-between gap-4 md:flex-col md:items-end md:justify-start">
+                      <p className="text-sm text-zinc-600">{project.year}</p>
+                      <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.08] text-zinc-600 transition-all duration-200 group-hover:border-white/25 group-hover:text-white">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                          <path
+                            d="M2.5 11.5L11.5 2.5M11.5 2.5H5M11.5 2.5V9"
+                            stroke="currentColor"
+                            strokeWidth="1.4"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-7 flex flex-wrap gap-2 border-t border-white/[0.06] pt-6">
+                    {project.stack.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-white/[0.06] bg-white/[0.02] px-3 py-1 text-xs text-zinc-600 transition-all duration-200 group-hover:border-white/[0.10] group-hover:text-zinc-500"
+                      >
+                        {tag}
                       </span>
-                    </div>
-                    <p className="text-zinc-400 text-base leading-relaxed max-w-2xl">
-                      {project.description}
-                    </p>
+                    ))}
                   </div>
 
-                  {/* Right — year + arrow */}
-                  <div className="flex md:flex-col items-center md:items-end justify-between md:justify-start gap-4 shrink-0">
-                    <p className="text-sm text-zinc-600">{project.year}</p>
-                    <div className="w-9 h-9 rounded-full border border-white/[0.08] flex items-center justify-center text-zinc-600 group-hover:text-white group-hover:border-white/25 transition-all duration-200">
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                        <path d="M2.5 11.5L11.5 2.5M11.5 2.5H5M11.5 2.5V9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mt-7 pt-6 border-t border-white/[0.06]">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 text-xs text-zinc-600 border border-white/[0.06] rounded-full bg-white/[0.02] group-hover:text-zinc-500 group-hover:border-white/[0.10] transition-all duration-200"
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <Link
+                      href={`/projects/${project.slug}`}
+                      className="inline-flex items-center rounded-full border border-white/[0.12] bg-white/[0.04] px-4 py-2 text-sm font-medium text-white transition hover:border-white/[0.22] hover:bg-white/[0.08]"
                     >
-                      {tag}
-                    </span>
-                  ))}
+                      Read case study
+                    </Link>
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-zinc-400 transition hover:bg-white/[0.06] hover:text-white"
+                    >
+                      View live site
+                    </a>
+                  </div>
                 </div>
-              </a>
               </SpotlightSurface>
             </motion.article>
           ))}
+        </div>
+
+        <div className="mt-10">
+          <Link
+            href="/projects"
+            className="inline-flex items-center text-sm font-medium text-zinc-400 transition hover:text-white"
+          >
+            Browse all case studies
+          </Link>
         </div>
       </div>
     </section>

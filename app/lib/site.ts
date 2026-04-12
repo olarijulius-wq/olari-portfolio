@@ -41,3 +41,4 @@ export const socialLinks = [
 ];
 
 export const contactEmail = "hello@olarijulius.dev";
+export const calendarUrl = process.env.NEXT_PUBLIC_CALENDAR_URL || "";
