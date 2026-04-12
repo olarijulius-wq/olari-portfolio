@@ -12,7 +12,7 @@ const projects = [
       "Invoice SaaS with Stripe payments, automated reminders, and analytics. Solo-built and launched on Product Hunt.",
     tags: ["SaaS", "Stripe", "Supabase", "Next.js"],
     link: "https://lateless.org",
-    year: "2024",
+    year: "2026",
     status: "Live",
   },
   {
@@ -22,7 +22,7 @@ const projects = [
       "Booking website for a nature accommodation business. Amenities pages, contact form, and email notifications.",
     tags: ["Booking", "Next.js", "Tailwind", "Resend"],
     link: "https://naturestonia.com",
-    year: "2024",
+    year: "2026",
     status: "Live",
   },
 ];
