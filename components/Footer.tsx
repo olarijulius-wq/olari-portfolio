@@ -9,7 +9,7 @@ export default function Footer() {
           className="text-xs text-zinc-700 text-center"
           suppressHydrationWarning
         >
-          {`© ${new Date().getFullYear()} Olari Julius. Built with Next.js & Framer Motion.`}
+          {`© ${new Date().getFullYear()} Built with Next.js & Framer Motion.`}
         </p>
       </div>
     </footer>

@@ -43,9 +43,9 @@ export default function Navbar() {
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="cursor-pointer select-none text-left"
-            aria-label="Olari Julius — scroll to top"
+            aria-label="Scroll to top"
           >
-            <BrandLogo showWordmark />
+            <BrandLogo />
           </button>
 
           {/* Centre nav links */}
@@ -84,7 +84,7 @@ export default function Navbar() {
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="cursor-pointer select-none"
-            aria-label="Olari Julius — scroll to top"
+            aria-label="Scroll to top"
           >
             <BrandLogo />
           </button>

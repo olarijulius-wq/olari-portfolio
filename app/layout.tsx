@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
+import { brandName, personName, siteDescription, siteTitle, siteUrl } from "@/app/lib/site";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -17,19 +18,56 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Olari Julius — Full-Stack Developer",
-  description:
-    "Full-Stack Developer from Estonia. I build products that work. Fast. SaaS apps, booking systems, MVPs shipped with Next.js, Supabase, and AI.",
-  authors: [{ name: "Olari Julius" }],
+  metadataBase: new URL(siteUrl),
+  title: siteTitle,
+  description: siteDescription,
+  applicationName: brandName,
+  authors: [{ name: personName, url: siteUrl }],
+  creator: personName,
+  publisher: personName,
+  category: "technology",
+  keywords: [
+    "Olari Julius Valdma",
+    "Olari Valdma",
+    "Olari Julius",
+    "full-stack developer Estonia",
+    "Next.js developer Estonia",
+    "portfolio",
+    "SaaS developer",
+    "MVP developer",
+    "web developer Estonia",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   icons: {
     icon: [{ url: "/icon", type: "image/png", sizes: "512x512" }],
     shortcut: [{ url: "/icon", type: "image/png", sizes: "512x512" }],
     apple: [{ url: "/apple-icon", type: "image/png", sizes: "180x180" }],
   },
   openGraph: {
-    title: "Olari Julius — Full-Stack Developer",
-    description: "I build products that work. Fast.",
+    title: siteTitle,
+    description: siteDescription,
     type: "website",
+    url: siteUrl,
+    siteName: brandName,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
   },
 };
 

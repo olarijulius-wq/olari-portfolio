@@ -1,11 +1,15 @@
 import type { MetadataRoute } from "next";
+import { brandName, siteDescription, siteUrl } from "@/app/lib/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Olari Julius",
-    short_name: "Olari Julius",
+    name: brandName,
+    short_name: brandName,
+    description: siteDescription,
     start_url: "/",
     display: "standalone",
+    scope: "/",
+    id: siteUrl,
     background_color: "#000000",
     theme_color: "#000000",
     icons: [

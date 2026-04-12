@@ -22,7 +22,7 @@ export default function BrandLogo({
       <BrandMark className="shrink-0" gradientId={`oj-mark-g-${gid}`} />
       {showWordmark && (
         <span className="text-sm font-semibold text-white tracking-tight leading-none">
-          Olari Julius
+          OJ Studio
         </span>
       )}
     </span>
