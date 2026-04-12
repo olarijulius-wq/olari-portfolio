@@ -72,15 +72,20 @@ export default function About() {
             className="space-y-10"
           >
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-3 gap-4 sm:gap-6">
               {[
                 { value: "2+", label: "Products shipped" },
                 { value: "Fast", label: "Delivery" },
                 { value: "AI", label: "Augmented dev" },
               ].map((s) => (
-                <div key={s.value}>
+                <div
+                  key={s.value}
+                  className="group/stat rounded-xl border border-transparent px-3 py-3 -mx-1 sm:mx-0 transition-all duration-300 hover:border-white/[0.1] hover:bg-white/[0.04] hover:shadow-[0_0_40px_rgba(255,255,255,0.03)] active:scale-[0.98]"
+                >
                   <p className="text-2xl font-bold text-white mb-1">{s.value}</p>
-                  <p className="text-xs text-zinc-600 leading-snug">{s.label}</p>
+                  <p className="text-xs text-zinc-600 leading-snug transition-colors group-hover/stat:text-zinc-500">
+                    {s.label}
+                  </p>
                 </div>
               ))}
             </div>
@@ -97,10 +102,10 @@ export default function About() {
                 {interests.map((item) => (
                   <li
                     key={item.label}
-                    className="flex items-center gap-3 text-sm text-zinc-500"
+                    className="group/interest flex items-center gap-3 text-sm text-zinc-500 rounded-lg px-2 -mx-2 py-2 transition-all duration-200 hover:text-zinc-300 hover:bg-white/[0.04] hover:border hover:border-white/[0.06] border border-transparent cursor-default"
                   >
                     <span
-                      className="w-1 h-1 rounded-full bg-zinc-700 shrink-0"
+                      className="w-1 h-1 rounded-full bg-zinc-700 shrink-0 transition-colors group-hover/interest:bg-zinc-400"
                       aria-hidden="true"
                     />
                     {item.label}

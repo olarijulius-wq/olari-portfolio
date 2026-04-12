@@ -12,6 +12,12 @@ export interface InteractiveGradientBackgroundProps {
   lerpFactor?: number;
 }
 
+const gradientColors = [
+  { start: "rgba(52, 52, 56, 0.45)", end: "rgba(52, 52, 56, 0)" },
+  { start: "rgba(78, 72, 88, 0.1)", end: "rgba(78, 72, 88, 0)" },
+  { start: "rgba(42, 44, 48, 0.38)", end: "rgba(42, 44, 48, 0)" },
+];
+
 /** Mouse-reactive canvas gradients — black/grey base with a hint of neutral purple. */
 export default function InteractiveGradientBackground({
   className = "",
@@ -25,12 +31,6 @@ export default function InteractiveGradientBackground({
   >([]);
   const mousePositionRef = useRef({ x: 0.5, y: 0.35 });
   const animationFrameRef = useRef<number | undefined>(undefined);
-
-  const gradientColors = [
-    { start: "rgba(52, 52, 56, 0.45)", end: "rgba(52, 52, 56, 0)" },
-    { start: "rgba(78, 72, 88, 0.1)", end: "rgba(78, 72, 88, 0)" },
-    { start: "rgba(42, 44, 48, 0.38)", end: "rgba(42, 44, 48, 0)" },
-  ];
 
   useEffect(() => {
     const canvas = canvasRef.current;

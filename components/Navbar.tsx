@@ -54,7 +54,7 @@ export default function Navbar() {
               <button
                 key={l.href}
                 onClick={() => go(l.href)}
-                className="h-[58px] flex items-center mx-3 text-sm font-medium text-zinc-400 hover:text-white transition-colors duration-150 cursor-pointer select-none"
+                className="h-10 my-auto flex items-center mx-1 px-3 rounded-lg text-sm font-medium text-zinc-400 hover:text-white hover:bg-white/[0.06] active:scale-[0.97] transition-all duration-200 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/25 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 {l.label}
               </button>
@@ -65,13 +65,13 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
             <button
               onClick={() => go("#work")}
-              className="text-sm font-semibold text-zinc-400 hover:text-white transition-colors duration-150 cursor-pointer px-4 h-10"
+              className="text-sm font-semibold text-zinc-400 hover:text-white transition-all duration-200 cursor-pointer px-4 h-10 rounded-lg hover:bg-white/[0.06] active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/25 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
               View work
             </button>
             <button
               onClick={() => go("#contact")}
-              className="relative inline-flex items-center justify-center text-white border-[2px] border-white/5 backdrop-blur-[25px] bg-[linear-gradient(104deg,rgba(253,253,253,0.05)_5%,rgba(240,240,228,0.1)_100%)] hover:bg-white hover:text-black transition-all duration-200 rounded-2xl px-4 h-10 text-sm font-semibold cursor-pointer"
+              className="relative inline-flex items-center justify-center text-white border-[2px] border-white/5 backdrop-blur-[25px] bg-[linear-gradient(104deg,rgba(253,253,253,0.05)_5%,rgba(240,240,228,0.1)_100%)] hover:bg-white hover:text-black hover:border-white hover:shadow-[0_0_32px_rgba(255,255,255,0.15)] active:scale-[0.98] transition-all duration-200 rounded-2xl px-4 h-10 text-sm font-semibold cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               aria-label="Get in touch"
             >
               Get in touch
@@ -129,7 +129,7 @@ export default function Navbar() {
                 <button
                   key={l.href}
                   onClick={() => go(l.href)}
-                  className="text-sm text-zinc-400 hover:text-white py-3 text-left transition-colors cursor-pointer"
+                  className="text-sm text-zinc-400 hover:text-white py-3 px-2 -mx-2 rounded-lg text-left transition-all duration-200 cursor-pointer hover:bg-white/[0.06] active:scale-[0.99]"
                 >
                   {l.label}
                 </button>
@@ -137,7 +137,7 @@ export default function Navbar() {
               <div className="pt-3 pb-1 border-t border-white/[0.08] mt-2">
                 <button
                   onClick={() => go("#contact")}
-                  className="w-full py-2.5 text-sm font-semibold text-white border-[2px] border-white/5 bg-[linear-gradient(104deg,rgba(253,253,253,0.05)_5%,rgba(240,240,228,0.1)_100%)] hover:bg-white hover:text-black rounded-2xl transition-all duration-200 cursor-pointer"
+                  className="w-full py-2.5 text-sm font-semibold text-white border-[2px] border-white/5 bg-[linear-gradient(104deg,rgba(253,253,253,0.05)_5%,rgba(240,240,228,0.1)_100%)] hover:bg-white hover:text-black hover:shadow-[0_0_28px_rgba(255,255,255,0.12)] active:scale-[0.99] rounded-2xl transition-all duration-200 cursor-pointer"
                 >
                   Get in touch
                 </button>

@@ -109,7 +109,7 @@ export default function Contact() {
             initial={{ opacity: 0, y: 12 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.28 }}
-            className="inline-block text-2xl md:text-3xl font-semibold text-white hover:text-zinc-300 transition-colors duration-200 mb-12 underline underline-offset-8 decoration-white/20 hover:decoration-white/40"
+            className="inline-block text-2xl md:text-3xl font-semibold text-white hover:text-white transition-all duration-200 mb-12 underline underline-offset-8 decoration-white/20 hover:decoration-white/55 rounded-lg px-2 -mx-2 py-1 hover:bg-white/[0.06] hover:shadow-[0_0_48px_rgba(255,255,255,0.06)] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
           >
             {EMAIL}
           </motion.a>
@@ -128,7 +128,7 @@ export default function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.name}
-                className="w-10 h-10 rounded-full border border-white/[0.08] flex items-center justify-center text-zinc-500 hover:text-white hover:border-white/20 transition-all duration-200 cursor-pointer"
+                className="w-10 h-10 rounded-full border border-white/[0.08] flex items-center justify-center text-zinc-500 hover:text-white hover:border-white/30 hover:bg-white/[0.06] hover:shadow-[0_0_24px_rgba(255,255,255,0.08)] hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/35 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 {social.icon}
               </a>

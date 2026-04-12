@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import SpotlightSurface from "@/components/SpotlightSurface";
 
 const services = [
   {
@@ -68,17 +69,23 @@ export default function Services() {
                 delay: i * 0.1,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="py-8 md:py-0 md:px-10 first:md:pl-0 last:md:pr-0"
+              className="py-6 md:py-0 md:px-6 first:md:pl-0 last:md:pr-0"
             >
-              <p className="text-[11px] text-zinc-600 uppercase tracking-[0.15em] font-medium mb-4">
-                {service.price}
-              </p>
-              <h3 className="text-xl font-semibold text-white mb-4 tracking-tight">
-                {service.title}
-              </h3>
-              <p className="text-sm text-zinc-500 leading-relaxed">
-                {service.description}
-              </p>
+              <SpotlightSurface
+                glowRadius={480}
+                glowStrength={0.1}
+                className="group rounded-2xl border border-transparent bg-transparent transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.03] active:scale-[0.995] md:px-4 md:py-8 py-6 px-1 -mx-1 md:mx-0"
+              >
+                <p className="text-[11px] text-zinc-600 uppercase tracking-[0.15em] font-medium mb-4 transition-colors group-hover:text-zinc-500">
+                  {service.price}
+                </p>
+                <h3 className="text-xl font-semibold text-white mb-4 tracking-tight">
+                  {service.title}
+                </h3>
+                <p className="text-sm text-zinc-500 leading-relaxed group-hover:text-zinc-400 transition-colors">
+                  {service.description}
+                </p>
+              </SpotlightSurface>
             </motion.div>
           ))}
         </div>
@@ -98,7 +105,7 @@ export default function Services() {
                   .querySelector("#contact")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              className="text-zinc-400 hover:text-white transition-colors cursor-pointer underline underline-offset-4"
+              className="text-zinc-400 hover:text-white transition-colors cursor-pointer underline underline-offset-4 decoration-white/25 hover:decoration-white/50 rounded-sm px-0.5 -mx-0.5 hover:bg-white/[0.06] active:scale-[0.98]"
             >
               Let&apos;s talk
             </button>

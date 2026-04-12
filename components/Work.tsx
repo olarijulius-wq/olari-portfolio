@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
+import SpotlightSurface from "@/components/SpotlightSurface";
 
 const projects = [
   {
@@ -68,29 +69,34 @@ export default function Work() {
                 delay: i * 0.12,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="group relative rounded-2xl border border-white/[0.08] bg-white/[0.02] overflow-hidden transition-all duration-300 hover:border-white/[0.14]"
+              className="group relative"
             >
-              {/* Glow at top on hover */}
-              <div
-                className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                aria-hidden="true"
-              />
-              <div
-                className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{
-                  background:
-                    "radial-gradient(ellipse at top, rgba(255,255,255,0.04) 0%, transparent 70%)",
-                }}
-                aria-hidden="true"
-              />
-
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block p-8 md:p-10 focus-visible:outline-none"
-                aria-label={`View ${project.title}`}
+              <SpotlightSurface
+                glowRadius={640}
+                glowStrength={0.12}
+                className="rounded-2xl border border-white/[0.08] bg-white/[0.02] transition-all duration-300 hover:border-white/[0.18] hover:shadow-[0_0_60px_rgba(255,255,255,0.04)] active:scale-[0.998]"
               >
+                {/* Glow at top on hover */}
+                <div
+                  className="absolute top-0 left-0 right-0 z-20 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  aria-hidden="true"
+                />
+                <div
+                  className="absolute top-0 left-1/2 z-20 w-72 h-24 -translate-x-1/2 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{
+                    background:
+                      "radial-gradient(ellipse at top, rgba(255,255,255,0.06) 0%, transparent 72%)",
+                  }}
+                  aria-hidden="true"
+                />
+
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block p-8 md:p-10 focus-visible:outline-none"
+                  aria-label={`View ${project.title}`}
+                >
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
                   {/* Left — title + description */}
                   <div className="flex-1 min-w-0">
@@ -131,6 +137,7 @@ export default function Work() {
                   ))}
                 </div>
               </a>
+              </SpotlightSurface>
             </motion.article>
           ))}
         </div>

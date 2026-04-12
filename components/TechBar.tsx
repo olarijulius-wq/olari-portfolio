@@ -44,9 +44,9 @@ function TechStrip() {
       {row.map((t) => (
         <div
           key={t.name}
-          className="flex items-center gap-2.5 text-zinc-500 hover:text-zinc-300 transition-colors duration-300 cursor-default"
+          className="group flex items-center gap-2.5 text-zinc-500 hover:text-zinc-200 transition-all duration-300 cursor-default rounded-lg px-2 py-1 -my-1 hover:bg-white/[0.05] hover:shadow-[0_0_24px_rgba(255,255,255,0.04)] active:scale-[0.98]"
         >
-          <span className="flex items-center justify-center opacity-90">
+          <span className="flex items-center justify-center opacity-90 transition-transform duration-300 group-hover:scale-110 group-hover:opacity-100">
             <TechIcon name={t.name} className={t.iconClass} />
           </span>
           <span className="text-sm font-medium whitespace-nowrap">{t.name}</span>

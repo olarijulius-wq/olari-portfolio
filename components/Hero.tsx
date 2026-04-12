@@ -130,7 +130,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.02] mb-8"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.02] mb-8 transition-all duration-300 hover:border-white/[0.14] hover:bg-white/[0.05] hover:shadow-[0_0_32px_rgba(255,255,255,0.05)]"
           >
             <span
               className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"
@@ -140,6 +140,15 @@ export default function Hero() {
               Available for work
             </span>
           </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.05 }}
+            className="text-[11px] text-zinc-600 uppercase tracking-[0.24em] font-medium mb-5"
+          >
+            Olari Julius Valdma
+          </motion.p>
 
           {/* Headline */}
           <motion.h1
@@ -180,7 +189,7 @@ export default function Hero() {
             {/* Primary — frosted glass pill */}
             <button
               onClick={() => go("#work")}
-              className="inline-flex items-center justify-center rounded-full px-6 h-11 text-sm font-semibold text-white border border-white/[0.12] backdrop-blur-[25px] bg-[linear-gradient(135deg,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0.04)_100%)] hover:bg-white hover:text-black hover:border-white transition-all duration-200 cursor-pointer"
+              className="inline-flex items-center justify-center rounded-full px-6 h-11 text-sm font-semibold text-white border border-white/[0.12] backdrop-blur-[25px] bg-[linear-gradient(135deg,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0.04)_100%)] hover:bg-white hover:text-black hover:border-white hover:shadow-[0_0_40px_rgba(255,255,255,0.12)] active:scale-[0.98] transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/35 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
               View my work
             </button>
@@ -188,7 +197,7 @@ export default function Hero() {
             {/* Secondary — ghost */}
             <button
               onClick={() => go("#contact")}
-              className="h-11 px-3 text-sm font-medium text-zinc-500 hover:text-white transition-colors duration-150 cursor-pointer"
+              className="h-11 px-4 rounded-full text-sm font-medium text-zinc-500 hover:text-white hover:bg-white/[0.06] active:scale-[0.98] transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/25 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
               Get in touch →
             </button>
