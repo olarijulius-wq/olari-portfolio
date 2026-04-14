@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
-import Prose from "@/components/Prose";
 import Reveal from "@/components/Reveal";
 import { createPageMetadata } from "@/app/lib/metadata";
-import { glassPanelInteractive } from "@/app/lib/glass";
+import { glassCta, glassPanelInteractive } from "@/app/lib/glass";
 import {
   personAlternateName,
   personGraphId,
@@ -17,6 +16,29 @@ const aboutMetaTitle = `About ${personName}`;
 const aboutHeading = aboutMetaTitle;
 const aboutDescription =
   "Background, experience, and working style of Olari Julius Valdma, Estonian full-stack developer and product-minded builder.";
+
+const principles = [
+  "Scope the first version around one core workflow.",
+  "Ship real integrations instead of speculative architecture.",
+  "Keep the interface calm, fast, and obvious to use.",
+  "Document enough for the next decision, not just the last one.",
+];
+
+const focusAreas = [
+  "SaaS products with clear conversion paths",
+  "Booking flows that remove friction instead of adding admin",
+  "Fast MVP work where shipping matters more than ceremony",
+];
+
+const exploreLinks = [
+  { href: "/projects", label: "Projects and case studies", detail: "See shipped work and problem framing." },
+  {
+    href: "/services",
+    label: "Services and scopes",
+    detail: "What I build, how it is scoped, and where I draw the line.",
+  },
+  { href: "/contact", label: "Contact", detail: "Start with a concrete workflow, timeline, or blocker." },
+];
 
 export const metadata: Metadata = createPageMetadata({
   title: aboutMetaTitle,
@@ -53,38 +75,104 @@ export default function AboutPage() {
         title={aboutHeading}
         description="Background, how I work end to end, and the kinds of products I like shipping — from SaaS and booking flows to fast MVPs."
       />
-      <section className="mx-auto max-w-5xl px-6 py-16 md:px-10 md:py-20">
-        <Reveal>
-          <div className={`rounded-3xl p-8 md:p-10 ${glassPanelInteractive}`}>
-            <Prose>
-              <p>
-                I&apos;m {personName}, an Estonian full-stack developer — you may also see{" "}
-                {personAlternateName}. This page is the long-form profile: how I work, what I optimize
-                for, and the kind of builds I take on.
+      <section className="mx-auto max-w-6xl px-6 py-16 md:px-10 md:py-20">
+        <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+          <Reveal>
+            <article className={`relative overflow-hidden rounded-[2rem] p-8 md:p-10 ${glassPanelInteractive}`}>
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.12),transparent_42%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.08),transparent_32%)]" />
+              <div className="relative">
+                <p className="text-[11px] uppercase tracking-[0.28em] text-zinc-500">Profile</p>
+                <p className="mt-6 max-w-3xl font-display text-3xl font-bold leading-tight tracking-tight text-white md:text-5xl">
+                  Small teams move faster when one person can carry the product from idea to launch
+                  without losing the thread.
+                </p>
+                <div className="mt-8 grid gap-6 border-t border-white/[0.08] pt-8 md:grid-cols-[0.85fr_1.15fr]">
+                  <div>
+                    <p className="text-sm uppercase tracking-[0.22em] text-zinc-600">Identity</p>
+                    <p className="mt-3 text-lg leading-8 text-zinc-300">
+                      I&apos;m {personName}, an Estonian full-stack developer. You may also see{" "}
+                      {personAlternateName}.
+                    </p>
+                  </div>
+                  <p className="text-base leading-8 text-zinc-400 md:text-lg">
+                    This page is the longer version of how I work, what I optimize for, and the kinds
+                    of builds I take on when the goal is a working product rather than a long planning
+                    ritual.
+                  </p>
+                </div>
+              </div>
+            </article>
+          </Reveal>
+          <div className="grid gap-6">
+            <Reveal delay={0.06}>
+              <article className={`rounded-[2rem] p-8 ${glassPanelInteractive}`}>
+                <p className="text-[11px] uppercase tracking-[0.24em] text-zinc-500">Focus</p>
+                <ul className="mt-6 space-y-4">
+                  {focusAreas.map((area) => (
+                    <li key={area} className="border-l border-white/10 pl-4 text-base leading-7 text-zinc-300">
+                      {area}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            </Reveal>
+            <Reveal delay={0.12}>
+              <article className={`rounded-[2rem] p-8 ${glassPanelInteractive}`}>
+                <p className="text-[11px] uppercase tracking-[0.24em] text-zinc-500">Default Mode</p>
+                <p className="mt-4 text-base leading-8 text-zinc-400">
+                  End-to-end ownership: product thinking, implementation, deployment, form flows,
+                  metadata, and the details that usually get dropped when too many hands touch a small
+                  build.
+                </p>
+              </article>
+            </Reveal>
+          </div>
+        </div>
+
+        <div className="mt-6 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+          <Reveal delay={0.08}>
+            <article className={`rounded-[2rem] p-8 md:p-10 ${glassPanelInteractive}`}>
+              <p className="text-[11px] uppercase tracking-[0.24em] text-zinc-500">How I Work</p>
+              <p className="mt-5 text-xl leading-9 text-zinc-200">
+                I focus on projects where the value is clear, the scope can stay disciplined, and the
+                first release needs to be useful fast.
               </p>
-              <p>
-                I focus on SaaS products, booking systems, and fast-moving MVP work — projects where
-                the value is clear, the scope can be disciplined, and shipping matters more than
-                ceremony. My default mode is end-to-end ownership: product thinking, implementation,
-                deployment, form flows, metadata, and the details that usually get left behind when
-                too many people touch a small build.
+              <p className="mt-5 max-w-2xl text-base leading-8 text-zinc-400">
+                That usually means SaaS products, booking systems, and fast-moving MVP work. I prefer
+                real workflows, real integrations, and production constraints over speculative systems
+                designed for problems that do not exist yet.
               </p>
-              <h2>Principles</h2>
-              <ul>
-                <li>Scope the first version around one core workflow.</li>
-                <li>Ship real integrations instead of speculative architecture.</li>
-                <li>Keep the interface calm, fast, and obvious to use.</li>
-                <li>Document enough for the next decision, not just the last one.</li>
-              </ul>
-              <h2>Explore</h2>
-              <p>
-                <Link href="/projects">Projects and case studies</Link>
-                {" · "}
-                <Link href="/services">Services and scopes</Link>
-                {" · "}
-                <Link href="/contact">Contact</Link>
-              </p>
-            </Prose>
+            </article>
+          </Reveal>
+          <Reveal delay={0.14}>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {principles.map((principle, index) => (
+                <article key={principle} className={`rounded-[1.75rem] p-6 ${glassPanelInteractive}`}>
+                  <p className="text-sm text-zinc-500">{String(index + 1).padStart(2, "0")}</p>
+                  <p className="mt-4 text-base leading-7 text-zinc-300">{principle}</p>
+                </article>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+
+        <Reveal className="mt-6" delay={0.18}>
+          <div className="grid gap-4 lg:grid-cols-3">
+            {exploreLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`group rounded-[1.75rem] p-6 ${item.href === "/contact" ? glassCta : glassPanelInteractive}`}
+              >
+                <p className="text-[11px] uppercase tracking-[0.24em] text-zinc-500 transition-colors group-hover:text-inherit">
+                  Explore
+                </p>
+                <p className="mt-4 text-xl font-semibold text-white">{item.label}</p>
+                <p className="mt-3 text-sm leading-7 text-zinc-400 transition-colors group-hover:text-inherit">
+                  {item.detail}
+                </p>
+              </Link>
+            ))}
           </div>
         </Reveal>
       </section>
