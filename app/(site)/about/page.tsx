@@ -3,7 +3,7 @@ import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
 import { createPageMetadata } from "@/app/lib/metadata";
-import { glassCta, glassPanelInteractive } from "@/app/lib/glass";
+import { glassCtaCard, glassPanelInteractive } from "@/app/lib/glass";
 import {
   personAlternateName,
   personGraphId,
@@ -156,23 +156,33 @@ export default function AboutPage() {
           </Reveal>
         </div>
 
-        <Reveal className="mt-6" delay={0.18}>
-          <div className="grid gap-4 lg:grid-cols-3">
-            {exploreLinks.map((item) => (
+            <Reveal className="mt-6" delay={0.18}>
+              <div className="grid gap-4 lg:grid-cols-3">
+              {exploreLinks.map((item) => {
+                const isContact = item.href === "/contact";
+                return (
+
               <Link
                 key={item.href}
                 href={item.href}
-                className={`group rounded-[1.75rem] p-6 ${item.href === "/contact" ? glassCta : glassPanelInteractive}`}
-              >
+                className={`group flex min-h-[12rem] flex-col items-start rounded-[1.75rem] p-6 ${
+                  isContact ? glassCtaCard :glassPanelInteractive
+                }`}
+                  >
                 <p className="text-[11px] uppercase tracking-[0.24em] text-zinc-500 transition-colors group-hover:text-inherit">
                   Explore
                 </p>
-                <p className="mt-4 text-xl font-semibold text-white">{item.label}</p>
-                <p className="mt-3 text-sm leading-7 text-zinc-400 transition-colors group-hover:text-inherit">
-                  {item.detail}
-                </p>
+                <div className="w-full">
+                  <p className={`mt-4 text-xl font-semibold text-white ${isContact ? "group-hover:text-black" : ""}`}>
+                    {item.label}
+                  </p>
+                  <p className={`mt-3 text-sm leading-7 text-zinc-400 transition-colors group-hover:text-inherit ${isContact ? "group-hover:text-zinc-700" : ""}`}>
+                    {item.detail}
+                  </p>
+                </div>
               </Link>
-            ))}
+                );
+              })}
           </div>
         </Reveal>
       </section>

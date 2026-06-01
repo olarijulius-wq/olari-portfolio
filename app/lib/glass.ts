@@ -7,17 +7,24 @@ const borderBase = "border-2 border-white/5";
 const focusRing =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black";
 
-export const glassCta = [
-  "inline-flex items-center justify-center",
+const glassCtaVisual = [
   borderBase,
   blur,
   "bg-[linear-gradient(104deg,rgba(253,253,253,0.05)_5%,rgba(240,240,228,0.1)_100%)]",
   "font-semibold text-white",
   "transition-all duration-200",
   "hover:border-white hover:bg-white hover:text-black hover:shadow-[0_0_32px_rgba(255,255,255,0.15)]",
-  "active:scale-[0.98]",
   focusRing,
 ].join(" ");
+
+export const glassCta = [
+  "inline-flex items-center justify-center",
+  glassCtaVisual,
+  "active:scale-[0.98]",
+].join(" ");
+
+/** CTA glass on large links/cards — same look as `glassCta`, top-aligned content (no centering). */
+export const glassCtaCard = ["flex flex-col items-start", glassCtaVisual, "active:scale-[0.995]"].join(" ");
 
 /** Secondary control: same glass frame, lighter hover (no full invert). */
 export const glassGhost = [
