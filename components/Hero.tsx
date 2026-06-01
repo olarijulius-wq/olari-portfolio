@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRef } from "react";
 import FloatingIntegrationPills from "@/components/FloatingIntegrationPills";
 import { glassCta, glassGhost } from "@/app/lib/glass";
-import { personAlternateName, personName } from "@/app/lib/site";
+import { personName } from "@/app/lib/site";
 
 const go = (href: string) =>
   document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
@@ -165,18 +165,7 @@ export default function Hero() {
           >
             Full-stack developer in Estonia building SaaS products, MVPs, and modern web apps.
           </motion.p>
-
-          {/* Intro */}
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="text-lg text-zinc-400 leading-relaxed mb-4 max-w-[480px]"
-          >
-            I&apos;m {personName}, an Estonian full-stack developer. I build SaaS products, booking
-            systems, and MVPs end to end — this site is my portfolio and the best place to reach me.
-            ({personAlternateName} works too.)
-          </motion.p>
+         
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
