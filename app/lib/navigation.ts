@@ -20,7 +20,6 @@ export const footerNavigation: NavigationItem[] = [
 
 export const homeSectionLinks: NavigationItem[] = [
   { label: "Work", href: "/#work" },
-  { label: "About", href: "/#about" },
   { label: "Services", href: "/#services" },
   { label: "Contact", href: "/#contact" },
 ];

@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import TechBar from "@/components/TechBar";
-import About from "@/components/About";
 import Work from "@/components/Work";
 import Services from "@/components/Services";
 import Contact from "@/components/Contact";
@@ -101,7 +100,6 @@ export default function Home() {
         <Navbar />
         <Hero />
         <TechBar />
-        <About />
         <Work />
         <Services />
         <Contact />

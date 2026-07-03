@@ -5,13 +5,6 @@ import Link from "next/link";
 import { useRef } from "react";
 import { glassGhost, glassPanelInteractive } from "@/app/lib/glass";
 
-const interests = [
-  { label: "11 years tennis" },
-  { label: "Piano & Euphonium" },
-  { label: "Gym" },
-  { label: "Logic & systems" },
-];
-
 export default function About() {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
@@ -69,12 +62,11 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* Right — stats + interests */}
+          {/* Right — stats */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.14, ease: [0.16, 1, 0.3, 1] }}
-            className="space-y-10"
           >
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4 sm:gap-6">
@@ -95,29 +87,6 @@ export default function About() {
               ))}
             </div>
 
-            {/* Divider */}
-            <div className="h-px bg-white/[0.06]" />
-
-            {/* Interests */}
-            <div>
-              <p className="text-[11px] text-zinc-600 uppercase tracking-[0.2em] font-medium mb-5">
-                Beyond code
-              </p>
-              <ul className="space-y-3">
-                {interests.map((item) => (
-                  <li
-                    key={item.label}
-                    className="group/interest flex cursor-default items-center gap-3 rounded-2xl border-2 border-white/5 bg-[linear-gradient(104deg,rgba(253,253,253,0.03)_5%,rgba(240,240,228,0.05)_100%)] px-3 py-2 text-sm text-zinc-500 backdrop-blur-[25px] transition-all duration-200 hover:border-white/25 hover:text-zinc-300 hover:shadow-[0_0_24px_rgba(255,255,255,0.08)] active:scale-[0.99]"
-                  >
-                    <span
-                      className="w-1 h-1 rounded-full bg-zinc-700 shrink-0 transition-colors group-hover/interest:bg-zinc-400"
-                      aria-hidden="true"
-                    />
-                    {item.label}
-                  </li>
-                ))}
-              </ul>
-            </div>
           </motion.div>
         </div>
       </div>
