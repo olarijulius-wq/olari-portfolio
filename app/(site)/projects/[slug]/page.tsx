@@ -54,6 +54,44 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         description={project.tagline}
       />
       <section className="mx-auto max-w-7xl px-6 py-16 md:px-10 md:py-20">
+        <Reveal className={`mb-8 rounded-3xl p-8 md:p-10 ${glassPanelInteractive}`}>
+          <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+            <div>
+              <p className="text-[11px] uppercase tracking-[0.2em] text-zinc-600">Case study</p>
+              <dl className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-1">
+                <div>
+                  <dt className="text-xs uppercase tracking-[0.18em] text-zinc-600">Role</dt>
+                  <dd className="mt-2 text-sm leading-6 text-zinc-300">{project.caseStudy.role}</dd>
+                </div>
+                <div>
+                  <dt className="text-xs uppercase tracking-[0.18em] text-zinc-600">Timeline</dt>
+                  <dd className="mt-2 text-sm leading-6 text-zinc-300">{project.caseStudy.timeline}</dd>
+                </div>
+              </dl>
+            </div>
+            <div className="grid gap-8 md:grid-cols-2">
+              <div>
+                <p className="text-xs uppercase tracking-[0.18em] text-zinc-600">Scope</p>
+                <ul className="mt-4 space-y-3 text-sm leading-6 text-zinc-400">
+                  {project.caseStudy.scope.map((item) => (
+                    <li key={item} className="border-b border-white/[0.06] pb-3 last:border-b-0 last:pb-0">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-[0.18em] text-zinc-600">What shipped</p>
+                <ul className="mt-4 space-y-3 text-sm leading-6 text-zinc-400">
+                  {project.caseStudy.highlights.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
         <div className="grid gap-8 md:grid-cols-[1.2fr_0.8fr]">
           <Reveal className={`rounded-3xl p-8 ${glassPanelInteractive}`}>
             <p className="text-[11px] uppercase tracking-[0.2em] text-zinc-600">Problem</p>
