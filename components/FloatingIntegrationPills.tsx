@@ -3,7 +3,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import {
   NextjsIcon,
-  ResendIcon,
   StripeIcon,
   SupabaseIcon,
   TypeScriptIcon,
@@ -16,7 +15,6 @@ const pillNames = [
   "Supabase",
   "Stripe",
   "Vercel",
-  "Resend",
 ] as const;
 
 function PillIcon({ name }: { name: (typeof pillNames)[number] }) {
@@ -32,8 +30,6 @@ function PillIcon({ name }: { name: (typeof pillNames)[number] }) {
       return <StripeIcon className={c} />;
     case "Vercel":
       return <VercelIcon className={`${c} scale-90`} />;
-    case "Resend":
-      return <ResendIcon className={c} />;
     default:
       return null;
   }

@@ -19,6 +19,8 @@ export const footerNavigation: NavigationItem[] = [
 ];
 
 export const homeSectionLinks: NavigationItem[] = [
+  { label: "Security", href: "/#security" },
+  { label: "Certifications", href: "/#certifications" },
   { label: "Work", href: "/#work" },
   { label: "Services", href: "/#services" },
   { label: "Contact", href: "/#contact" },

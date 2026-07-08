@@ -163,19 +163,29 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
             className="text-xl md:text-2xl text-white/90 font-medium tracking-tight mb-6 max-w-[480px] leading-snug"
           >
-            Full-stack developer in Estonia building SaaS products, MVPs, and modern web apps.
+            Full-stack developer (Next.js/TypeScript) who ships secure production SaaS - and
+            understands how it breaks.
           </motion.p>
          
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-10 max-w-[480px]"
+            className="mb-10 flex max-w-[520px] flex-wrap items-center gap-2"
+            aria-label="Security credentials"
           >
+            {["SOC L1", "Jr Pentester labs", "AI Security"].map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-xs font-medium text-zinc-400"
+              >
+                {tag}
+              </span>
+            ))}
             <Link href="/about" className={`${glassGhost} rounded-2xl px-4 py-2 text-sm`}>
               Full profile &amp; background
             </Link>
-          </motion.p>
+          </motion.div>
 
           {/* CTAs */}
           <motion.div

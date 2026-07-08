@@ -25,7 +25,7 @@ const tiers = [
     title: "Integrations",
     price: "from €500",
     timeline: "project-based",
-    includes: ["Stripe, Resend, API integrations", "Automation touchpoints", "Workflow simplification"],
+    includes: ["Stripe, Supabase, API integrations", "Automation touchpoints", "Workflow simplification"],
     excludes: ["Unsupported vendor lock-in", "Opaque legacy systems", "Open-ended maintenance"],
   },
 ];

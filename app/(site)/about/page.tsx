@@ -15,19 +15,19 @@ import {
 const aboutMetaTitle = `About ${personName}`;
 const aboutHeading = aboutMetaTitle;
 const aboutDescription =
-  "Background, experience, and working style of Olari Julius Valdma, Estonian full-stack developer and product-minded builder.";
+  "Background, experience, and working style of Olari Julius Valdma, an Estonian full-stack developer building secure production SaaS and a hands-on security foundation.";
 
 const principles = [
   "Scope the first version around one core workflow.",
-  "Ship real integrations instead of speculative architecture.",
+  "Ship real integrations under production constraints.",
+  "Treat payments, auth, database, and deployment as one surface.",
   "Keep the interface calm, fast, and obvious to use.",
-  "Document enough for the next decision, not just the last one.",
 ];
 
 const focusAreas = [
-  "SaaS products with clear conversion paths",
+  "Secure production SaaS with clear conversion paths",
   "Booking flows that remove friction instead of adding admin",
-  "Fast MVP work where shipping matters more than ceremony",
+  "Security foundation work across SOC L1, Jr Pentester, and AI Security labs",
 ];
 
 const exploreLinks = [
@@ -73,7 +73,7 @@ export default function AboutPage() {
       <PageHeader
         eyebrow="About"
         title={aboutHeading}
-        description="Background, how I work end to end, and the kinds of products I like shipping — from SaaS and booking flows to fast MVPs."
+        description="Background, how I work end to end, and the kinds of products I like shipping - from secure SaaS and booking flows to hands-on security lab work."
       />
       <section className="mx-auto max-w-6xl px-6 py-16 md:px-10 md:py-20">
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
@@ -83,8 +83,8 @@ export default function AboutPage() {
               <div className="relative">
                 <p className="text-[11px] uppercase tracking-[0.28em] text-zinc-500">Profile</p>
                 <p className="mt-6 max-w-3xl font-display text-3xl font-bold leading-tight tracking-tight text-white md:text-5xl">
-                  Small teams move faster when one person can carry the product from idea to launch
-                  without losing the thread.
+                  I build production SaaS end to end and keep sharpening the security side of how
+                  those systems fail.
                 </p>
                 <div className="mt-8 grid gap-6 border-t border-white/[0.08] pt-8 md:grid-cols-[0.85fr_1.15fr]">
                   <div>
@@ -95,9 +95,9 @@ export default function AboutPage() {
                     </p>
                   </div>
                   <p className="text-base leading-8 text-zinc-400 md:text-lg">
-                    This page is the longer version of how I work, what I optimize for, and the kinds
-                    of builds I take on when the goal is a working product rather than a long planning
-                    ritual.
+                    I ship solo across product, payments, auth, database, and deployment. Alongside
+                    that, I am building a security foundation through SOC Level 1, Jr Penetration
+                    Tester, and AI Security lab work.
                   </p>
                 </div>
               </div>
@@ -120,9 +120,8 @@ export default function AboutPage() {
               <article className={`rounded-[2rem] p-8 ${glassPanelInteractive}`}>
                 <p className="text-[11px] uppercase tracking-[0.24em] text-zinc-500">Default Mode</p>
                 <p className="mt-4 text-base leading-8 text-zinc-400">
-                  End-to-end ownership: product thinking, implementation, deployment, form flows,
-                  metadata, and the details that usually get dropped when too many hands touch a small
-                  build.
+                  End-to-end ownership: product thinking, implementation, payments, auth, database,
+                  deployment, metadata, and the security basics that matter once a product is live.
                 </p>
               </article>
             </Reveal>
@@ -135,12 +134,12 @@ export default function AboutPage() {
               <p className="text-[11px] uppercase tracking-[0.24em] text-zinc-500">How I Work</p>
               <p className="mt-5 text-xl leading-9 text-zinc-200">
                 I focus on projects where the value is clear, the scope can stay disciplined, and the
-                first release needs to be useful fast.
+                first release needs to be useful in production.
               </p>
               <p className="mt-5 max-w-2xl text-base leading-8 text-zinc-400">
                 That usually means SaaS products, booking systems, and fast-moving MVP work. I prefer
-                real workflows, real integrations, and production constraints over speculative systems
-                designed for problems that do not exist yet.
+                real workflows, real integrations, and production constraints, while using security
+                labs to keep improving how I think about monitoring, testing, and failure modes.
               </p>
             </article>
           </Reveal>

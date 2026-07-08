@@ -30,7 +30,7 @@ export const projects: Project[] = [
   {
     slug: "glowel",
     title: "Glowel",
-    tagline: "Skincare guidance app that turns one photo into a clear routine.",
+    tagline: "AI skincare web app that turns one photo into personalized insights.",
     year: "2026",
     status: "Live",
     liveUrl: "https://glowel.app",
@@ -45,19 +45,12 @@ export const projects: Project[] = [
       ],
     },
     summary:
-      "Privacy-minded skincare web app with a camera-based scan flow, brand-neutral product guidance, free scan quota, and a Stripe-backed Pro path.",
+      "Scan your skin from one photo, get a Skin Score with personalized insights.",
     problem:
       "Skincare research often pushes people into product overload before they understand what their skin likely needs, while photo-based tools can feel vague about privacy, limitations, and what happens after the scan.",
     approach:
       "I built the experience around one direct action: take or upload a clear face photo, then receive ingredient-first guidance and routine order without sponsored product noise. The landing page, account flow, pricing, and privacy messaging keep the product easy to understand before someone starts a scan.",
-    stack: [
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "Stripe Checkout",
-      "Camera upload flow",
-      "Responsive product design",
-    ],
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Stripe", "Supabase"],
     results: [
       "Launched a live web app with a clear free-to-Pro path for recurring skincare scans.",
       "Created a guided camera-to-recommendation flow that sets expectations around privacy and analysis limits.",
@@ -123,44 +116,44 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "looduskeskus",
-    title: "Looduskeskus",
-    tagline: "Nature stay booking site built to turn quiet traffic into confirmed stays.",
+    slug: "naturestonia",
+    title: "Naturestonia",
+    tagline: "Booking-focused wildlife tourism and guiding website in Estonia.",
     year: "2026",
     status: "Live",
     liveUrl: "https://naturestonia.com",
     caseStudy: {
       role: "Website strategy and full-stack build",
       timeline: "Focused launch",
-      scope: ["Marketing site", "Booking inquiry flow", "Amenity storytelling", "Email notifications"],
+      scope: ["Marketing site", "Booking-focused content", "Wildlife guiding pages", "Responsive build"],
       highlights: [
-        "The page structure answers practical guest questions before the inquiry step.",
-        "Direct form submission keeps booking conversations under the operator's control.",
-        "The site avoids booking-platform weight while still giving visitors a clear next step.",
+        "The page structure keeps wildlife experiences and booking intent close together.",
+        "The content is organized around practical visitor decisions.",
+        "The site stays lightweight while still giving visitors a clear next step.",
       ],
     },
     summary:
-      "Booking-focused website for a nature accommodation business with amenity storytelling, inquiry flow, and email notifications.",
+      "Booking-focused wildlife tourism and guiding website in Estonia built with Next.js, TypeScript, and Tailwind CSS.",
     problem:
-      "The business needed a site that could explain the location clearly, answer common guest questions, and convert interest into direct booking inquiries without relying on a heavy booking platform.",
+      "Naturestonia needed a website that could explain wildlife tourism and guiding options clearly, then move interested visitors toward booking without adding unnecessary platform weight.",
     approach:
-      "I built a lean marketing and booking experience with clear accommodation details, trust-building content, and a direct contact flow that keeps the operator in control of guest communication.",
-    stack: ["Next.js 16", "TypeScript", "Tailwind CSS", "Resend", "Responsive content design"],
+      "I built a lean Next.js site around clear service content, booking-focused page structure, and responsive Tailwind layouts for visitors researching guided wildlife experiences in Estonia.",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS"],
     results: [
-      "Created a clearer decision path from discovery to inquiry for prospective guests.",
-      "Combined storytelling, amenities, and practical booking details in one fast-loading site.",
-      "Set up direct form-based communication with email notifications instead of adding unnecessary platform complexity.",
+      "Created a clearer path from discovery to booking intent for wildlife tourism visitors.",
+      "Combined guiding context and practical booking information in one fast-loading site.",
+      "Kept the build focused on the real visitor journey instead of unnecessary booking-platform complexity.",
     ],
     gallery: [
       {
         src: "/projects/looduskeskus-home.svg",
-        alt: "Looduskeskus homepage hero with lodging overview and booking intent.",
+        alt: "Naturestonia homepage hero with wildlife tourism overview and booking intent.",
         width: 1600,
         height: 1000,
       },
       {
         src: "/projects/looduskeskus-amenities.svg",
-        alt: "Looduskeskus amenities and experience section designed for guest confidence.",
+        alt: "Naturestonia wildlife experience section designed for visitor confidence.",
         width: 1600,
         height: 1000,
       },

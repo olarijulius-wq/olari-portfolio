@@ -37,9 +37,9 @@ export const studioWordmark = "OJ Studio";
 export const manifestShortName = "Olari Valdma";
 export const personGraphId = `${siteUrl}#person`;
 export const websiteGraphId = `${siteUrl}#website`;
-export const siteTitle = `${personName} | Full-Stack Developer in Estonia`;
+export const siteTitle = `${personName} | Secure SaaS Developer in Estonia`;
 export const siteDescription =
-  "Olari Julius Valdma is an Estonian full-stack developer building SaaS products, MVPs, booking systems, and modern web apps with Next.js and AI-assisted workflows.";
+  "Olari Julius Valdma is an Estonian full-stack developer building secure production SaaS, booking-focused websites, and a hands-on security foundation across SOC, web testing, and AI security.";
 
 export const socialLinks = [
   "https://github.com/olarijulius-wq",

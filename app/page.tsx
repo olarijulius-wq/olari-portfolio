@@ -1,6 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import TechBar from "@/components/TechBar";
+import SecuritySkills from "@/components/SecuritySkills";
+import Certifications from "@/components/Certifications";
 import Work from "@/components/Work";
 import Services from "@/components/Services";
 import Contact from "@/components/Contact";
@@ -32,7 +34,7 @@ const jsonLd = {
       alternateName: personAlternateName,
       url: siteUrl,
       image: `${siteUrl}/icon`,
-      jobTitle: "Full-Stack Developer",
+      jobTitle: "Full-Stack Developer and Security-Focused Builder",
       description: siteDescription,
       email: contactEmail,
       nationality: {
@@ -52,6 +54,12 @@ const jsonLd = {
         "SaaS development",
         "MVP development",
         "AI-assisted development",
+        "Application security",
+        "SIEM",
+        "Network security monitoring",
+        "Burp Suite",
+        "Nmap",
+        "Wireshark",
         "Booking systems",
       ],
     },
@@ -100,6 +108,8 @@ export default function Home() {
         <Navbar />
         <Hero />
         <TechBar />
+        <SecuritySkills />
+        <Certifications />
         <Work />
         <Services />
         <Contact />

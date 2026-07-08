@@ -25,7 +25,7 @@ const services = [
     title: "Integrations",
     price: "from €500",
     description:
-      "Stripe, Resend, Supabase, and any third-party APIs. Connect your tools and automate your workflows.",
+      "Stripe, Supabase, and third-party APIs. Connect your tools and automate your workflows.",
   },
 ];
 

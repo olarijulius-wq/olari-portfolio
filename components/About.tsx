@@ -44,20 +44,20 @@ export default function About() {
 
             <div className="space-y-5 text-zinc-400 text-[1.0625rem] leading-[1.75]">
               <p>
-                Estonian full-stack developer shipping web apps and MVPs with AI-assisted workflows.
-                What often takes teams months, I aim to deliver in weeks — without cutting what users
-                actually feel in the product.
+                I&apos;m an Estonian full-stack developer shipping production SaaS and focused web
+                products with end-to-end ownership.
               </p>
               <p>
-                From idea to deployed product — auth, payments, database, deploy. No handoffs, no
-                gaps.{" "}
+                From idea to deployed product: auth, payments, database, and deployment. I&apos;m also
+                building a practical security foundation through SOC L1, Jr Pentester, and AI
+                Security lab work.{" "}
                 <Link href="/about" className={`${glassGhost} ml-1 inline-flex rounded-2xl px-3 py-1.5 text-sm`}>
                   Full profile
                 </Link>
               </p>
               <p className="text-zinc-600">
-                I think in systems — whether it&apos;s music theory, court geometry, or database
-                architecture, the underlying logic is always the same.
+                I think in systems: how the product works, where the data moves, and how the same
+                flow can break under real-world pressure.
               </p>
             </div>
           </motion.div>
@@ -71,9 +71,9 @@ export default function About() {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4 sm:gap-6">
               {[
-                { value: "2+", label: "Products shipped" },
-                { value: "Fast", label: "Delivery" },
-                { value: "AI", label: "Augmented dev" },
+                { value: "Solo", label: "Product ownership" },
+                { value: "SOC L1", label: "Security foundation" },
+                { value: "Labs", label: "Hands-on practice" },
               ].map((s) => (
                 <div
                   key={s.value}
