@@ -18,7 +18,7 @@ const certifications = [
     issued: "Jun 2026",
     expires: "Jun 2029",
     credentialId: "THM-BLIOO59WFH",
-    verifyUrl: "{{AI_SECURITY_VERIFY_URL}}",
+    verifyUrl: "https://tryhackme.com/certificate/THM-BLIOO59WFH",
     skills: [],
   },
 ] as const;
