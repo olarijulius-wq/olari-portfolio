@@ -27,19 +27,19 @@ const resolveSiteUrl = () => {
 
 export const siteUrl = resolveSiteUrl();
 
-export const personName = "Olari Julius Valdma";
+export const personName = "Olari Julius";
 /** Shorter name variant for natural copy and structured data. */
-export const personAlternateName = "Olari Valdma";
+export const personAlternateName = "Olari";
 /** Primary site / entity label for metadata, OG, manifest, and footer. */
 export const brandName = personName;
 /** Visual wordmark in the nav mark; keeps “OJ Studio” as a studio label without replacing the person entity. */
 export const studioWordmark = "OJ Studio";
-export const manifestShortName = "Olari Valdma";
+export const manifestShortName = "Olari";
 export const personGraphId = `${siteUrl}#person`;
 export const websiteGraphId = `${siteUrl}#website`;
 export const siteTitle = `${personName} | Secure SaaS Developer in Estonia`;
 export const siteDescription =
-  "Olari Julius Valdma is an Estonian full-stack developer building secure production SaaS, booking-focused websites, and a hands-on security foundation across SOC, web testing, and AI security.";
+  "Olari Julius is an Estonian full-stack developer building secure production SaaS, booking-focused websites, and a hands-on security foundation across SOC, web testing, and AI security.";
 
 export const socialLinks = [
   "https://github.com/olarijulius-wq",

@@ -28,9 +28,8 @@ export const metadata: Metadata = {
   publisher: personName,
   category: "technology",
   keywords: [
-    "Olari Julius Valdma",
-    "Olari Valdma",
     "Olari Julius",
+    "Olari",
     "full-stack developer Estonia",
     "Next.js developer Estonia",
     "portfolio",

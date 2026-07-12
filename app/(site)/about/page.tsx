@@ -15,7 +15,7 @@ import {
 const aboutMetaTitle = `About ${personName}`;
 const aboutHeading = aboutMetaTitle;
 const aboutDescription =
-  "Background, experience, and working style of Olari Julius Valdma, an Estonian full-stack developer building secure production SaaS and a hands-on security foundation.";
+  "Background, experience, and working style of Olari Julius, an Estonian full-stack developer building secure production SaaS and a hands-on security foundation.";
 
 const principles = [
   "Scope the first version around one core workflow.",

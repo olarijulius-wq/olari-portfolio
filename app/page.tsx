@@ -29,7 +29,7 @@ const jsonLd = {
       "@id": personGraphId,
       name: personName,
       givenName: "Olari",
-      familyName: "Julius",
+      additionalName: "Julius",
       alternateName: personAlternateName,
       url: siteUrl,
       image: `${siteUrl}/icon`,
