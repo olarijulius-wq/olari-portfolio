@@ -3,6 +3,7 @@ export type ProjectGalleryItem = {
   alt: string;
   width: number;
   height: number;
+  blurDataURL?: string;
 };
 
 export type Project = {
@@ -58,10 +59,12 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        src: "/projects/glowel-home.svg",
+        src: "/projects/glowel-1.webp",
         alt: "Glowel landing page concept with skincare scan call to action and phone demo.",
         width: 1600,
         height: 1000,
+        blurDataURL:
+          "data:image/webp;base64,UklGRioAAABXRUJQVlA4IB4AAABQAQCdASoKAAYAA4BaJZwABDOAAP7yVxRZDVW2AAA=",
       },
       {
         src: "/projects/glowel-routine.svg",
@@ -146,16 +149,20 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        src: "/projects/looduskeskus-home.svg",
+        src: "/projects/naturestonia-1.webp",
         alt: "Naturestonia homepage hero with wildlife tourism overview and booking intent.",
         width: 1600,
         height: 1000,
+        blurDataURL:
+          "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACwAQCdASoKAAYAA4BaJYwAAudlAk6AAP7vZ4Adm9iOppKgeYLxc28l9lOOgAAA",
       },
       {
-        src: "/projects/looduskeskus-amenities.svg",
+        src: "/projects/naturestonia-2.webp",
         alt: "Naturestonia wildlife experience section designed for visitor confidence.",
         width: 1600,
         height: 1000,
+        blurDataURL:
+          "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAACQAQCdASoKAAYAA4BaJZQAAuYcEZgA/tz/xOUF5+fCHVkkWsj+2a7B3rBgohlhMVsC+1HaAgDMkEzv27+5kAAA",
       },
     ],
   },

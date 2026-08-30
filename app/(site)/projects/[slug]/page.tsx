@@ -163,6 +163,8 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                   alt={image.alt}
                   width={image.width}
                   height={image.height}
+                  placeholder={image.blurDataURL ? "blur" : "empty"}
+                  blurDataURL={image.blurDataURL}
                   className="h-auto w-full"
                 />
               </figure>
