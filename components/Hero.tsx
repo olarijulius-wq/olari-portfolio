@@ -163,8 +163,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
             className="text-xl md:text-2xl text-white/90 font-medium tracking-tight mb-6 max-w-[480px] leading-snug"
           >
-            Full-stack developer (Next.js/TypeScript) who ships secure production SaaS - and
-            understands how it breaks.
+            Full-stack developer (Next.js/TypeScript)
           </motion.p>
          
           <motion.div
